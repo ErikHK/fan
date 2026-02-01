@@ -1,0 +1,12 @@
+avr-gcc -mmcu=atmega328p -Wall -Os -o build/blink.elf src/blink.c
+avr-objcopy -j .text -j .data -O ihex build/blink.elf build/blink.hex
+
+avrdude.exe -c avrisp2 -p ATmega168 -B 125kHz
+
+
+flasha:
+avrdude.exe -c avrisp2 -p ATmega168 -B 125kHz flash:w:blink.hex
+
+
+programmera o flasha:
+avr-gcc -mmcu=atmega168p -Os -Wall -o blink.elf  blink.c;avr-objcopy.exe -j .text -j .data -O ihex blink.elf blink.hex;avrdude.exe -c avrisp2 -p ATmega168 -B 125kHz -U flash:w:blink.hex
