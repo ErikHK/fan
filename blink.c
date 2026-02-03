@@ -173,30 +173,6 @@ uint8_t flipByte(uint8_t c)
 ISR(TIMER1_COMPA_vect)
 {
   
-  //uint8_t jump = i;
-  
-  //uint16_t tmp = vol * pgm_read_byte(&sineLookupTable[i]);
-  
-  
-  //PORTB = (uint8_t) (tmp >> 11);
-  
-  //PORTB = i>>3;
-  
-  //PORTB = sinewave[i];
-  
-  //val = 250 * sin(i);
-  
-  //uint16_t tmp = vol * pgm_read_byte(&triangle[i]);
-  //PORTD = tmp>>8;
-  
-  //uint16_t tmp = (vol * i);
-  
-  //add tremolo
-  //tmp =  tmp + pgm_read_byte(&triangle[tremolo_index])>>2;
-  
-  
-  
-  //PORTD = tmp>>8;
  
   i+=1;
   i2+=2;
@@ -215,7 +191,7 @@ ISR(TIMER1_COMPA_vect)
 	  longi2 = 0;
   
   //uint16_t viol = vol * i;
-  uint16_t organ2 = yes * organ[i] + yes * organ[i2];
+  uint16_t organ2 = vol * organ[i] + vol * organ[i2];
   
   //uint16_t miau2 = 255 * mjau_16[longi];
   
@@ -225,9 +201,16 @@ ISR(TIMER1_COMPA_vect)
 //  if(chooser < 3000)
 //	PORTD = (uint8_t) (softsaw2>>10);
 //  else
-	PORTD = (uint8_t) (organ2>>10);
+	//PORTD = (uint8_t) (organ2>>10);
 
 
+  //PORTD = (uint8_t) (organ2>>8);
+  
+  uint16_t testtt = vol * i;
+  
+  PORTD = (uint8_t) (testtt>>8);
+
+  //PORTD = organ[i];
 
   //uint16_t phatsaw = vol * (longsine[longi] + longsine[longi2]>>1);
   
@@ -283,9 +266,11 @@ int main(void) {
 	//MCUCR |= (1 << PUD);
 	
 	//set as input
-	DDRC = 0x00;
+	//DDRC = 0x00;
+	DDRA = 0x00;
 	//Disable internal pull ups
-	PORTC=0x00;
+	//PORTC=0x00;
+	PORTA=0x00;
 	//Set PORTB1 pin as input
 	DDRB=0x00;
 	//internal pullups
@@ -325,7 +310,9 @@ int main(void) {
 	
 
 
+	// F_clock/128
 	ADCSRA = 0x87;
+	
 	/* Enable the ADC */
 	ADCSRA |= _BV(ADEN);
 	
@@ -335,10 +322,7 @@ int main(void) {
 	//DDRB  |= _BV(LED_PIN);
 
 
-	/* continually check if the ADC value is greater than the
-	 * defined ADC_THRESHOLD value above.  If it is turn the LED on,
-	 * if it isn't turn it off. */
-	for (;;) {
+	while(1) {
 		
 		uint16_t res = adc_read(0);
 		
@@ -354,75 +338,49 @@ int main(void) {
 
 
 
-		if(softpot_read_counter > 100)
+		if(softpot_read_counter > 10)
 		{
 			
 			//if(  (res > 0 && res < 540)  || (res > 600  &&  res < 1024) )
-			if( res > 140 && res < 1000 )
+			if( res > 3000 && res < 65000 )
 			{
 				//DDRB = 0xff;
-				OCR1A = (uint16_t) (test2);
+				//OCR1A = (uint16_t) (test2);
+				
+				OCR1A = res>>8;
 				//vol = 0xffff;
 				//vol = 5;
 				//OCR1A = res*63;
+
 				
 			}
-			else
-			{
-				//targetvol = 0;
-				//vol = 0;
-				//OCR1A = 0;
-				//if (longi > 12956)
-				    longi = 0;
-				
-			}
+
 			
 			softpot_read_counter = 0;
 		}
 		
-		//OCR1A = 0x0b18>>3;
+		//OCR1A = 0x0b18;
 		
+
 		
-		
-		uint16_t mic = adc_read(4);
+		uint16_t mic = adc_read(1);
 		
 
 		//_delay_ms(40);
-		if(mic_read_counter > 8)
+		if(mic_read_counter > 2)
 		{
-			if(mic > 70 && mic <= 1023)
+			if(mic > 6000 && mic <= 65000)
 			{
 				
-				//yes = 3;
-				yes = mic/20;
-				
-				//checka om mic < min, isåfall sätt min
-				if(mic < min)
-					min = mic;
-				
-				if(mic > max)
-					max = mic;
-				
-				uint16_t diff = max-min;
 				
 				
+				targetvol = (mic-6000)>>7;
 				
-				if (diff < 70)
-				{
-					targetvol = 0;
-				}
-				else
-				{
-					//vol = 255;
-					//targetvol = 127;
-					if(diff > 127)
-						targetvol = 127;
-					else
-						targetvol = (uint8_t)diff;
-					
-				}
+
 				
-			}else{ yes = 0; }
+			}else{
+				targetvol = 0;
+			}
 			
 			mic_read_counter = 0;
 		}
@@ -457,7 +415,7 @@ int main(void) {
 		}
 		
 	
-		if(vol_counter > 10)
+		if(vol_counter > 3)
 		{
 			
 			if(targetvol > vol)
@@ -467,24 +425,6 @@ int main(void) {
 			
 			vol_counter = 0;
 		}
-		
-		
-		//reset values after x ms
-		if(mic_counter >= 100)
-		{
-			min = 1023;
-			max = 0;
-		
-			
-			//vol++;
-			//if(vol > 254)
-			//	vol = 0;
-			
-			
-			mic_counter = 0;
-		}			
-		
-		
 		
 	
     }
@@ -497,17 +437,20 @@ uint16_t adc_read(uint8_t adcx) {
 	 * just 'OR' the pin's number with ADMUX to select that pin.
 	 * We first zero the four bits by setting ADMUX equal to its higher
 	 * four bits. */
-	ADMUX	&=	0xf0;
 	
-	//ADMUX = (1 << ADLAR);
-	
+	//Internal 2.56 V
 	//ADMUX = (1 << ADLAR) | (1 << REFS0) | (1 << REFS1);
+	
+	//External AREF!! left adjusted result!
+	ADMUX = (1 << ADLAR);
+	
 	ADMUX	|=	adcx;
 
-	//ADMUX = 0x87;
 
 	/* This starts the conversion. */
 	ADCSRA |= _BV(ADSC);
+	
+	
 
 	/* This is an idle loop that just wait around until the conversion
 	 * is finished.  It constantly checks ADCSRA's ADSC bit, which we just
