@@ -10,3 +10,11 @@ avrdude.exe -c avrisp2 -p ATmega168 -B 125kHz flash:w:blink.hex
 
 programmera o flasha:
 avr-gcc -mmcu=atmega168p -Os -Wall -o blink.elf  blink.c;avr-objcopy.exe -j .text -j .data -O ihex blink.elf blink.hex;avrdude.exe -c avrisp2 -p ATmega168 -B 125kHz -U flash:w:blink.hex
+
+
+
+avr-gcc -mmcu=atmega1284p -Wall -o blink.elf  blink.c;avr-objcopy.exe -j .text -j .data -O ihex blink.elf blink.hex;avrdude.exe -c avrisp2 -p m1284p -U flash:w:blink.hex
+
+
+avrdude -c avrisp2 -p m1284p -v -U lfuse:w:0xee:m
+just nu är den ff!!

@@ -49,7 +49,7 @@ def read_wav():
 
 
 def print_signal(signal):
-    stri = "{"
+    stri = "const __flash uint8_t s[] = {"
     for s in signal:
         stri = stri + str(int(s)) + ","
 

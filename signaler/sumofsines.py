@@ -89,7 +89,7 @@ def samplify_signal(insignal):
 
 
 
-signal =  samplify_signal( read_wav("mjau_16k.wav") / 100.0 )
+signal =  samplify_signal( read_wav("darudesandstorm.wav") / 100.0 )
 
 #signal = generate_long_sine()
 
@@ -98,9 +98,9 @@ print(max(signal))
 print(min(signal))
 
 
-
+print("//" + str(len(signal)) + " values")
 print_signal(signal)
-print(len(signal))
+
 
 plt.plot(signal)
 plt.show()
