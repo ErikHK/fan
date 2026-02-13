@@ -212,7 +212,7 @@ uint16_t extrashit = 0;
 uint8_t mode = 0;
 uint16_t modenum = 0;
 
-
+uint8_t soundtimer = 0;
 
 
 ISR(ADC_vect)
@@ -263,11 +263,13 @@ ISR(TIMER1_COMPA_vect)
  
   i+=1;
   
+  /*
   i2+=2;
   i3 += 3;
   i4 += 4;
   
-  longsinei++;
+  if(i > 128)
+	longsinei+=2;
   
   if(longsinei > 4095)
 	  longsinei = 0;
@@ -296,11 +298,43 @@ ISR(TIMER1_COMPA_vect)
     if (longi < 6693)
 	    longi++;
   }
-  
+  */
   
   //uint16_t out = vol * triangle[i];
+/*
   uint16_t out = 0;
-  
+		  if(mode == SQUAREMODE)
+		  {
+			uint8_t t = extrashit>>3;
+			
+			if(t > 0)
+				out = vol * (i > t);
+			else
+				out = vol * (i > 3);
+			PORTD = out;  
+		  }
+		  else if(mode == ORGANMODE)
+		  {
+			  out = vol * (organ[i] + organ[i2] + organ[i3] + organ[i4] );
+			  //out = vol * organ[i];
+			  PORTD = (out>>10);
+		  }
+		  else if(mode == SAWTOOTHMODE)
+		  {
+			out = vol * i;
+			PORTD = (out>>8);
+		  }
+		  else if(mode == DRUMMODE)
+		  {
+			//out = noise[longi];
+			//PORTD = out;
+		  }
+		  else if(mode == TRIANGLEMODE)
+		  {
+			out = vol * triangle[i];
+			PORTD = (out>>8);
+		  }
+  */
   
   /*
   
@@ -356,8 +390,38 @@ ISR(TIMER1_COMPA_vect)
   }
   */
   
-  
-  
+  uint16_t out = 0;
+  if(mode == SQUAREMODE)
+  {
+	uint8_t t = extrashit>>3;
+	
+	if(t > 0)
+		out = vol * (i > t);
+	else
+		out = vol * (i > 3);
+	PORTD = out;  
+  }
+  else if(mode == ORGANMODE)
+  {
+	  out = vol * ( organ[i] );
+	  //out = vol * organ[i];
+	  PORTD = (out>>8);
+  }
+  else if(mode == SAWTOOTHMODE)
+  {
+	out = vol * i;
+	PORTD = (out>>8);
+  }
+  //else if(mode == DRUMMODE)
+  //{
+	//out = noise[longi];
+	//PORTD = out;
+  //}
+  else if(mode == TRIANGLEMODE)
+  {
+	out = vol * triangle[i];
+	PORTD = (out>>8);
+  }
   
   //PORTD = vol * (i < 127);
   
@@ -443,47 +507,26 @@ int main(void) {
 		*/
 		
 		
-		  uint16_t out = 0;
-		  if(mode == SQUAREMODE)
-		  {
-			uint8_t t = extrashit>>3;
-			
-			if(t > 0)
-				out = vol * (i > t);
-			else
-				out = vol * (i > 3);
-			PORTD = out;  
-		  }
-		  else if(mode == ORGANMODE)
-		  {
-			  out = vol * (organ[i] + (longsine[longsinei]>>2) );
-			  //out = vol * organ[i];
-			  PORTD = (out>>9);
-		  }
-		  else if(mode == SAWTOOTHMODE)
-		  {
-			out = vol * i;
-			PORTD = (out>>8);
-		  }
-		  else if(mode == DRUMMODE)
-		  {
-			//out = noise[longi];
-			//PORTD = out;
-		  }
-		  else if(mode == TRIANGLEMODE)
-		  {
-			out = vol * triangle[i];
-			PORTD = (out>>8);
-		  }
-  
 		
 		
-		if(modenum > 0 && modenum < 333)
+		if(soundtimer > 8)
+		{
+		  
+		
+		
+		}
+		
+		soundtimer++;
+		
+		
+		if(modenum > 0 && modenum < 250)
 			mode = SQUAREMODE;
-		else if(modenum >= 333 && modenum < 666)
+		else if(modenum >= 250 && modenum < 500)
 			mode = SAWTOOTHMODE;
-		else if(modenum >= 666 && modenum < 1000)
+		else if(modenum >= 500 && modenum < 750)
 			mode = ORGANMODE;
+		else if(modenum >= 750 && modenum < 1023)
+			mode = TRIANGLEMODE;
 		
 		//ADCSRA |= _BV(ADSC);
 		
@@ -503,6 +546,18 @@ int main(void) {
 		
 		if(softpot_read_counter > 4000)
 		{		
+		
+		
+		
+		
+			
+			
+			
+			
+		
+		
+		
+		
 		
 			//if half steps!!
 			//uint8_t test = (res) / 42.6666;
