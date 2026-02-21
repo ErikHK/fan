@@ -2,7 +2,7 @@
 
 #include <avr/io.h>
 #include <stdint.h>
-#include <util/delay.h>
+//#include <util/delay.h>
 #include <avr\interrupt.h>
 #include <avr/pgmspace.h>
 #include <math.h>
@@ -179,11 +179,13 @@ uint16_t mic_read_counter = 0;
 
 uint16_t softpot_read_counter = 0;
 
-uint16_t vol_counter = 0;
+uint8_t vol_counter = 0;
 
 uint16_t tremolo_counter = 0;
 
 uint8_t tremolo_index = 0;
+
+uint16_t tremolo_index16 = 0;
 
 uint16_t pitchshift = 0;
 
@@ -214,11 +216,11 @@ uint16_t modenum = 0;
 
 uint8_t soundtimer = 0;
 
+uint16_t out = 0;
 
 ISR(ADC_vect)
 {
-	//vol=0;
-	
+
 	
 	if(currentAdcChannel == 0)
 		softpot_res = ADC;
@@ -231,18 +233,6 @@ ISR(ADC_vect)
 	else if(currentAdcChannel == 5)
 		modenum = ADC;
 	
-	
-	//uint8_t adcl = ADCL;
-    //uint8_t adch = ADCH;
-    //uint16_t adcVal = (adch << 8) | adcl;
-	
-	//softpot_res = adcVal;
-	
-	//ADMUX = 0;
-	//ADCSRA |= _BV(ADEN);
-	//ADCSRA |= _BV(ADATE);
-	//ADCSRA |= _BV(ADIE);
-	//ADCSRA |= _BV(ADSC);
 	
 	adc_done = 1;
 	adc_busy = 0;
@@ -263,183 +253,20 @@ ISR(TIMER1_COMPA_vect)
  
   i+=1;
   
-  /*
-  i2+=2;
-  i3 += 3;
-  i4 += 4;
-  
-  if(i > 128)
-	longsinei+=2;
-  
-  if(longsinei > 4095)
-	  longsinei = 0;
   
   
-  if(mode == CATMODE)
-  {
-    if (longi < 12957)
-	    longi++;
-  }
-  
-  if(mode == PRUTTMODE)
-  {
-    if (longi < 3622)
-	    longi++;
-  }
-  
-  if(mode == DARUDEMODE)
-  {
-    if (longi < 1207)
-	    longi++;
-  }
-  
-  if(mode == DRUMMODE)
-  {
-    if (longi < 6693)
-	    longi++;
-  }
-  */
-  
-  //uint16_t out = vol * triangle[i];
-/*
-  uint16_t out = 0;
-		  if(mode == SQUAREMODE)
-		  {
-			uint8_t t = extrashit>>3;
-			
-			if(t > 0)
-				out = vol * (i > t);
-			else
-				out = vol * (i > 3);
-			PORTD = out;  
-		  }
-		  else if(mode == ORGANMODE)
-		  {
-			  out = vol * (organ[i] + organ[i2] + organ[i3] + organ[i4] );
-			  //out = vol * organ[i];
-			  PORTD = (out>>10);
-		  }
-		  else if(mode == SAWTOOTHMODE)
-		  {
-			out = vol * i;
-			PORTD = (out>>8);
-		  }
-		  else if(mode == DRUMMODE)
-		  {
-			//out = noise[longi];
-			//PORTD = out;
-		  }
-		  else if(mode == TRIANGLEMODE)
-		  {
-			out = vol * triangle[i];
-			PORTD = (out>>8);
-		  }
-  */
-  
-  /*
-  
-   switch (mode) {
-  case SQUAREMODE:
-    uint8_t t = extrashit>>3;
-	
-	if(t > 0)
-		out = vol * (i > t);
-	else
-		out = vol * (i > 5);
-	PORTD = out;
-    break;
-  case SAWTOOTHMODE:
-    out = vol * i;
-	PORTD = (out>>8);
-    break;
-  case SOFTSAWMODE:
-    out = vol * softsaw[i];
-	PORTD = (out>>8);
-	break;
-  case TRIANGLEMODE:
-    out = vol * triangle[i];
-	PORTD = (out>>8);
-	break;
-  //case ORGANMODE:
-  //  out = vol * organ[i] + vol*organ[i2] + vol * organ[i3];
-//	PORTD = (out>>9);
-  //  break;
-  //case DRUMMODE:
-  //  out = noise[longi];
-	//PORTD = out;
-	//break;
-  //case PLINGMODE:
-    //out = vol * pling[longi];
-	//PORTD = (out>>8);
-    //break;
-  //case CATMODE:
-  //  out = vol * miau[longi];
-	//PORTD = (out>>8);
-	//break;
-  //case PRUTTMODE:
-  //  out = vol * prutt1[longi];
-	//PORTD = (out>>8);
-	//break;
-  //case DARUDEMODE:
-  //  out = vol * darude[longi];
-	//PORTD = (out>>8);
-	//break;
-  default:
-    out = vol * 255 * (i > 127);
-	PORTD = (out>>8);
-  }
-  */
-  
-  uint16_t out = 0;
-  if(mode == SQUAREMODE)
-  {
-	uint8_t t = extrashit>>3;
-	
-	if(t > 0)
-		out = vol * (i > t);
-	else
-		out = vol * (i > 3);
-	PORTD = out;  
-  }
-  else if(mode == ORGANMODE)
-  {
-	  out = vol * ( organ[i] );
-	  //out = vol * organ[i];
-	  PORTD = (out>>8);
-  }
-  else if(mode == SAWTOOTHMODE)
-  {
-	out = vol * i;
-	PORTD = (out>>8);
-  }
-  //else if(mode == DRUMMODE)
-  //{
-	//out = noise[longi];
-	//PORTD = out;
-  //}
-  else if(mode == TRIANGLEMODE)
-  {
-	out = vol * triangle[i];
-	PORTD = (out>>8);
-  }
-  
-  //PORTD = vol * (i < 127);
+  PORTD = (out>>8);
   
 }
 
 
 int main(void) {
 	
-	//DDRC = 0xff;
-	//PORTC = 0x00;
-	
-	//MCUCR |= (1 << PUD);
+
 	
 	//set as input
-	//DDRC = 0x00;
 	DDRA = 0x00;
 	//Disable internal pull ups
-	//PORTC=0x00;
 	PORTA=0x00;
 	//Set PORTB1 pin as input
 	DDRB=0x00;
@@ -455,11 +282,10 @@ int main(void) {
 	
 	TIMSK1 = (1 << OCIE1A);
 	
-	//OCR1A = 0x0B18;
+	OCR1A = 0x0B18;
 	
 	//enable global interrups
 	sei();
-	
 	
 	
 	// F_clock/128
@@ -511,22 +337,55 @@ int main(void) {
 		
 		if(soundtimer > 8)
 		{
-		  
+		  if(modenum > 0 && modenum < 250)
+			mode = SQUAREMODE;
+		  else if(modenum >= 250 && modenum < 500)
+			mode = SAWTOOTHMODE;
+		  else if(modenum >= 500 && modenum < 750)
+			mode = ORGANMODE;
+		  else if(modenum >= 750 && modenum < 1023)
+			mode = TRIANGLEMODE;
+			
+			
+		  if(mode == SQUAREMODE)
+		  {
+			uint8_t t = extrashit>>3;
+			
+			if(t > 0)
+				out = vol * 255 * (i > t);
+			else
+				out = vol * 255 * (i > 3);
+		  }
+		  else if(mode == ORGANMODE)
+		  {
+			  out = vol * ( organ[i] );
+			  //out = vol * organ[i];
+		  }
+		  else if(mode == SAWTOOTHMODE)
+		  {
+			out = (vol * (i + (sineLookupTable[tremolo_index] >>1) ) )>>1;
+			
+			//out = vol * i;
+			
+			//out = 128 * sineLookupTable[tremolo_index];
+		  }
+		  //else if(mode == DRUMMODE)
+		  //{
+			//out = noise[longi];
+			//PORTD = out;
+		  //}
+		  else if(mode == TRIANGLEMODE)
+		  {
+			  out = vol * triangle[i];
+		  }
 		
-		
+		  soundtimer = 0;
 		}
 		
 		soundtimer++;
 		
 		
-		if(modenum > 0 && modenum < 250)
-			mode = SQUAREMODE;
-		else if(modenum >= 250 && modenum < 500)
-			mode = SAWTOOTHMODE;
-		else if(modenum >= 500 && modenum < 750)
-			mode = ORGANMODE;
-		else if(modenum >= 750 && modenum < 1023)
-			mode = TRIANGLEMODE;
+
 		
 		//ADCSRA |= _BV(ADSC);
 		
@@ -544,20 +403,8 @@ int main(void) {
 		}
 		
 		
-		if(softpot_read_counter > 4000)
-		{		
-		
-		
-		
-		
-			
-			
-			
-			
-		
-		
-		
-		
+		if(softpot_read_counter > 6000)
+		{
 		
 			//if half steps!!
 			//uint8_t test = (res) / 42.6666;
@@ -565,25 +412,15 @@ int main(void) {
 			
 			//otherwise 
 			double test__ = softpot_res / 512.0;
+			//uint8_t test__ = softpot_res >> 9;
 			
 			uint8_t pitch2 = (pitchshift + 70) / 42.6666;
 			
 			double pitch = pitch2 / 12.0;
 			
-			double test2;
-			
-			
-			/*
-			if(mode == SAWTOOTHMODE && extrashit > 100)
-				test2 = 110 * pow(2, test__ + pitch) + (extrashit>>4)* ((sineLookupTable[tremolo_index]) / 540.0);
-			else if(mode == ORGANMODE && extrashit > 100)
-				test2 = 110 * pow(2, test__ + pitch) + 20.0 * ((sineLookupTable[tremolo_index]) / 540.0);
-			else
-				*/
-			
-			test2 = 110 * pow(2, test__ + pitch);
+			uint16_t test2uint = 110 * pow(2, test__ + pitch);
 				
-			uint16_t test2uint = (uint16_t) test2;
+			//uint16_t test2uint = (uint16_t) test2;
 
 				
 			if( softpot_res > 200 && softpot_res <= 1023 )
@@ -597,7 +434,7 @@ int main(void) {
 		}
 		
 		
-		if(mic_counter > 100)
+		if(mic_counter > 200)
 		{
 			
 			if(mic > 120 && mic <= 1023)
@@ -612,14 +449,6 @@ int main(void) {
 				
 				//mic_acc += 127;
 				
-				/*
-				if(mic - 120 <= 255)
-					targetvol =  ( (mic-120) )*1;
-					//targetvol = 255;
-				else
-					targetvol = 255;
-				*/
-				
 			}else{
 				targetvol = 0;
 				longi = 0;
@@ -632,30 +461,33 @@ int main(void) {
 		}
 		
 		
-		
 		mic_counter++;
-		
 		
 		vol_counter++;
 		
 		softpot_read_counter++;
 	
-
+	
+		
 		tremolo_counter++;
 		
-		
-		if(tremolo_counter > 60)
+		if(tremolo_counter >  (extrashit>>3) + 10 )
 		{
 			tremolo_index++;
 			
+			//tremolo_index16++;
+			
+			//if(tremolo_index16 > 4095)
+			//	tremolo_index16 = 0;
 			
 			tremolo_counter = 0;
 		}
 		
+		
+		
 	
 		if(vol_counter > 50)
 		{
-			
 			
 			if(targetvol > vol)
 				vol++;
@@ -665,8 +497,6 @@ int main(void) {
 			//vol = 255;
 			vol_counter = 0;
 		}
-		
-		
 		
 		if(mic_read_counter > 7)
 		{
