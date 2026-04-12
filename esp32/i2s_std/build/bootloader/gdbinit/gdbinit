@@ -1,0 +1,2 @@
+source D:/skapelser/flowophone/esp32/i2s_std/build/bootloader/gdbinit/symbols
+source D:/skapelser/flowophone/esp32/i2s_std/build/bootloader/gdbinit/connect

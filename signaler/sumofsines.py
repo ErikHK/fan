@@ -84,12 +84,12 @@ def samplify_signal(insignal):
     minv = min(insignal)
     diff = maxv-minv
 
-    signal = 255*(signal/diff)
-    return signal+abs(min(signal))
+    signal = 32767*(signal/diff )
+    return np.array(signal)#+abs(min(signal))
 
 
 
-signal =  samplify_signal( read_wav("chirp0.5.wav") / 100.0 )
+signal =  samplify_signal( read_wav("boathorn_44100.wav") / 100.0 )
 
 #signal = generate_long_sine()
 
