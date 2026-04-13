@@ -129,7 +129,7 @@ static void continuous_adc_init(adc_channel_t *channel, uint8_t channel_num, adc
     ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &handle));
 
     adc_continuous_config_t dig_cfg = {
-        .sample_freq_hz = 10 * 1000,
+        .sample_freq_hz = 20 * 1000,
         .conv_mode = ADC_CONV_SINGLE_UNIT_1,
         .format = ADC_DIGI_OUTPUT_FORMAT_TYPE1
     };
@@ -296,7 +296,7 @@ static void tremolo_task(void *userData)
 void read_buttons(void *userData)
 {
 
-    
+    while(1){
     uint32_t ret_num = 0;
     esp_err_t ret = adc_continuous_read(handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
     if (ret == ESP_OK) {
@@ -489,6 +489,11 @@ void read_buttons(void *userData)
     //}
 
     */
+
+    //vTaskDelay(pdMS_TO_TICKS(10)); // Delay ms
+
+    vTaskDelay(1);
+}
 }
 
 
@@ -594,6 +599,7 @@ void app_main(void)
 
     //button read timer
     
+    /*
     const esp_timer_create_args_t my_timer_args2 = 
     {
         .callback = &read_buttons,
@@ -603,7 +609,7 @@ void app_main(void)
     esp_timer_handle_t timer_handler2;
     esp_timer_create(&my_timer_args2, &timer_handler2);
     esp_timer_start_periodic(timer_handler2, 2000);  // One Second = 1000000 micro second
-
+    */
 
     const esp_timer_create_args_t my_timer_args = 
     {
@@ -698,7 +704,7 @@ void app_main(void)
     
     xTaskCreate(audio_task, "audio", 4096, NULL, 2 | portPRIVILEGE_BIT, NULL);
     
-    //xTaskCreate(read_buttons, "read_buttons", 4096, NULL, 5, NULL);
+    xTaskCreate(read_buttons, "read_buttons", 4096, NULL, ( 1 | portPRIVILEGE_BIT ), NULL);
     //xTaskCreate(tremolo_task, "tremolo", 4096, NULL, 5, NULL);
     //xTaskCreate(vol_envelope, "volume", 4096, NULL, ( 1 | portPRIVILEGE_BIT ), NULL);
 }
