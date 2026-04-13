@@ -5,44 +5,32 @@ Bootloader binary size 0x56a0 bytes. 0x2960 bytes (32%) free.
 [2/9] No install step for 'bootloader'
 [3/9] Completed 'bootloader'
 [4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/i2s_std_example_main.c.obj
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c: In function 'initSineTable':
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:371:27: warning: unused variable 'bigEndian32' [-Wunused-variable]
-  371 |         } littleEndian32, bigEndian32;
-      |                           ^~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:371:11: warning: unused variable 'littleEndian32' [-Wunused-variable]
-  371 |         } littleEndian32, bigEndian32;
-      |           ^~~~~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c: In function 'i2s_example_write_task':
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:763:16: warning: unused variable 'phase' [-Wunused-variable]
-  763 |     static int phase = 0;
-      |                ^~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c: At top level:
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:758:13: warning: 'i2s_example_write_task' defined but not used [-Wunused-function]
-  758 | static void i2s_example_write_task(void *args)
-      |             ^~~~~~~~~~~~~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:624:13: warning: 'tremolo_task' defined but not used [-Wunused-function]
-  624 | static void tremolo_task(void *userData)
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:212:13: warning: 'tremolo_task' defined but not used [-Wunused-function]
+  212 | static void tremolo_task(void *userData)
       |             ^~~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:566:13: warning: 'write_buffer' defined but not used [-Wunused-function]
-  566 | static void write_buffer()
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:191:13: warning: 'vol_envelope' defined but not used [-Wunused-function]
+  191 | static void vol_envelope(void *userData)
       |             ^~~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:556:13: warning: 'write_sine_lut' defined but not used [-Wunused-function]
-  556 | static void write_sine_lut()
-      |             ^~~~~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:366:13: warning: 'initSineTable' defined but not used [-Wunused-function]
-  366 | static void initSineTable( void ) {
-      |             ^~~~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:332:17: warning: 'phaseAcc' defined but not used [-Wunused-variable]
-  332 | static uint32_t phaseAcc = 0;
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:65:17: warning: 'phaseAcc' defined but not used [-Wunused-variable]
+   65 | static uint32_t phaseAcc = 0;
       |                 ^~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:323:17: warning: 'tremoloindex' defined but not used [-Wunused-variable]
-  323 | static uint16_t tremoloindex = 0;
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:56:17: warning: 'tremoloindex' defined but not used [-Wunused-variable]
+   56 | static uint16_t tremoloindex = 0;
       |                 ^~~~~~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:317:17: warning: 'sweepvol' defined but not used [-Wunused-variable]
-  317 | static uint16_t sweepvol = 65535>>1;
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:54:16: warning: 'targetfreq' defined but not used [-Wunused-variable]
+   54 | static int16_t targetfreq = 0;
+      |                ^~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:53:16: warning: 'freqcounter' defined but not used [-Wunused-variable]
+   53 | static uint8_t freqcounter = 0;
+      |                ^~~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:52:16: warning: 'freqsum' defined but not used [-Wunused-variable]
+   52 | static int32_t freqsum = 0;
+      |                ^~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:46:17: warning: 'sweepvol' defined but not used [-Wunused-variable]
+   46 | static uint16_t sweepvol = 65535>>1;
       |                 ^~~~~~~~
-D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:307:17: warning: 'i3' defined but not used [-Wunused-variable]
-  307 | static uint16_t i3 = 0;
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:37:17: warning: 'i3' defined but not used [-Wunused-variable]
+   37 | static uint16_t i3 = 0;
       |                 ^~
 [5/9] Linking C static library esp-idf\main\libmain.a
 [6/9] Generating esp-idf/esp_system/ld/sections.ld
@@ -54,4 +42,4 @@ Merged 1 ELF section
 Successfully created esp32h2 image.
 Generated D:/skapelser/flowophone/esp32/i2s_std/build/i2s_std_example.bin
 [9/9] C:\WINDOWS\system32\cmd.exe /C "cd /D D:\skapelser\flowophone\esp32\i2s_std\build\esp-idf\esptool_py && D:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe D:/Espressif/frameworks/esp-idf-v5.5-2/components/partition_table/check_sizes.py --offset 0x8000 partition --type app D:/skapelser/flowophone/esp32/i2s_std/build/partition_table/partition-table.bin D:/skapelser/flowophone/esp32/i2s_std/build/i2s_std_example.bin"
-i2s_std_example.bin binary size 0xc8480 bytes. Smallest app partition is 0x100000 bytes. 0x37b80 bytes (22%) free.
+i2s_std_example.bin binary size 0x8f7d0 bytes. Smallest app partition is 0x100000 bytes. 0x70830 bytes (44%) free.

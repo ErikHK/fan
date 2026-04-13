@@ -1,58 +1,78 @@
-Command: ninja flash
-[1/5] C:\WINDOWS\system32\cmd.exe /C "cd /D D:\skapelser\flowophone\esp32\i2s_std\build\esp-idf\esptool_py && D:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe D:/Espressif/frameworks/esp-idf-v5.5-2/components/partition_table/check_sizes.py --offset 0x8000 partition --type app D:/skapelser/flowophone/esp32/i2s_std/build/partition_table/partition-table.bin D:/skapelser/flowophone/esp32/i2s_std/build/i2s_std_example.bin"
-i2s_std_example.bin binary size 0x70150 bytes. Smallest app partition is 0x100000 bytes. 0x8feb0 bytes (56%) free.
-[2/5] Performing build step for 'bootloader'
+Command: ninja all
+[1/9] Performing build step for 'bootloader'
 [1/1] C:\WINDOWS\system32\cmd.exe /C "cd /D D:\skapelser\flowophone\esp32\i2s_std\build\bootloader\esp-idf\esptool_py && D:\Espressif\python_env\idf5.5_py3.11_env\Scripts\python.exe D:/Espressif/frameworks/esp-idf-v5.5-2/components/partition_table/check_sizes.py --offset 0x8000 bootloader 0x0 D:/skapelser/flowophone/esp32/i2s_std/build/bootloader/bootloader.bin"
 Bootloader binary size 0x56a0 bytes. 0x2960 bytes (32%) free.
-[3/5] No install step for 'bootloader'
-[4/5] Completed 'bootloader'
-[4/5] C:\WINDOWS\system32\cmd.exe /C "cd /D D:\Espressif\frameworks\esp-idf-v5.5-2\components\esptool_py && D:\Espressif\tools\cmake\3.30.2\bin\cmake.exe -D IDF_PATH=D:/Espressif/frameworks/esp-idf-v5.5-2 -D SERIAL_TOOL=D:/Espressif/python_env/idf5.5_py3.11_env/Scripts/python.exe;;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esptool_py/esptool/esptool.py;--chip;esp32h2 -D SERIAL_TOOL_ARGS=--before=default_reset;--after=hard_reset;write_flash;@flash_args -D WORKING_DIRECTORY=D:/skapelser/flowophone/esp32/i2s_std/build -P D:/Espressif/frameworks/esp-idf-v5.5-2/components/esptool_py/run_serial_tool.cmake"
-esptool.py --chip esp32h2 -p COM14 -b 460800 --before=default_reset --after=hard_reset write_flash --flash_mode dio --flash_freq 48m --flash_size 2MB 0x0 bootloader/bootloader.bin 0x10000 i2s_std_example.bin 0x8000 partition_table/partition-table.bin
-esptool.py v4.12.dev1
-Serial port COM14
-Connecting....
-Chip is ESP32-H2 (revision v0.1)
-Features: BLE, IEEE802.15.4
-Crystal is 32MHz
-MAC: 48:31:b7:ff:fe:cf:45:1e
-BASE MAC: 48:31:b7:cf:45:1e
-MAC_EXT: ff:fe
-Uploading stub...
-Running stub...
-Stub running...
-Changing baud rate to 460800
-Changed.
-Configuring flash size...
-Flash will be erased from 0x00000000 to 0x00005fff...
-Flash will be erased from 0x00010000 to 0x00080fff...
-Flash will be erased from 0x00008000 to 0x00008fff...
-SHA digest in image updated
-Compressed 22176 bytes to 13865...
-Writing at 0x00000000... (100 %)
-Wrote 22176 bytes (13865 compressed) at 0x00000000 in 0.7 seconds (effective 268.9 kbit/s)...
-Hash of data verified.
-Compressed 459088 bytes to 232389...
-Writing at 0x00010000... (6 %)
-Writing at 0x0001ac4a... (13 %)
-Writing at 0x00025208... (20 %)
-Writing at 0x0002f973... (26 %)
-Writing at 0x000388c4... (33 %)
-Writing at 0x0003eba6... (40 %)
-Writing at 0x00047378... (46 %)
-Writing at 0x0004c394... (53 %)
-Writing at 0x000556b3... (60 %)
-Writing at 0x0005b625... (66 %)
-Writing at 0x000622e9... (73 %)
-Writing at 0x00069655... (80 %)
-Writing at 0x00071458... (86 %)
-Writing at 0x00077362... (93 %)
-Writing at 0x0007e27e... (100 %)
-Wrote 459088 bytes (232389 compressed) at 0x00010000 in 5.9 seconds (effective 619.1 kbit/s)...
-Hash of data verified.
-Compressed 3072 bytes to 103...
-Writing at 0x00008000... (100 %)
-Wrote 3072 bytes (103 compressed) at 0x00008000 in 0.1 seconds (effective 449.9 kbit/s)...
-Hash of data verified.
-
-Leaving...
-Hard resetting via RTS pin...
+[2/9] No install step for 'bootloader'
+[3/9] Completed 'bootloader'
+[4/9] Building C object esp-idf/main/CMakeFiles/__idf_main.dir/i2s_std_example_main.c.obj
+FAILED: esp-idf/main/CMakeFiles/__idf_main.dir/i2s_std_example_main.c.obj 
+ccache D:\Espressif\tools\riscv32-esp-elf\esp-14.2.0_20251107\riscv32-esp-elf\bin\riscv32-esp-elf-gcc.exe -DESP_PLATFORM -DIDF_VER=\"v5.5.2-729-g87912cd291\" -DSOC_MMU_PAGE_SIZE=CONFIG_MMU_PAGE_SIZE -DSOC_XTAL_FREQ_MHZ=CONFIG_XTAL_FREQ -D_GLIBCXX_HAVE_POSIX_SEMAPHORE -D_GLIBCXX_USE_POSIX_SEMAPHORE -D_GNU_SOURCE -D_POSIX_READER_WRITER_LOCKS -ID:/skapelser/flowophone/esp32/i2s_std/build/config -ID:/skapelser/flowophone/esp32/i2s_std/main -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/platform_include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/config/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/config/include/freertos -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/config/riscv/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/FreeRTOS-Kernel/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/FreeRTOS-Kernel/portable/riscv/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/FreeRTOS-Kernel/portable/riscv/include/freertos -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/esp_additions/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/include/soc -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/include/soc/esp32h2 -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/ldo/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/debug_probe/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/mspi_timing_tuning/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/mspi_timing_tuning/tuning_scheme_impl/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/power_supply/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/. -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/private_include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/tlsf -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/log/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/soc/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/soc/esp32h2 -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/soc/esp32h2/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/soc/esp32h2/register -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/hal/platform_port/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/hal/esp32h2/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/hal/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/esp32h2/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/esp32h2/include/esp32h2 -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/esp32h2 -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_common/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/soc -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/include/riscv -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/include/private -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gpio/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc/interface -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc/esp32h2/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc/deprecated/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gptimer/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_pm/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/include -ID:/Espressif/frameworks/esp-idf-v5.5-2/examples/peripherals/i2s/i2s_examples_common -march=rv32imac_zicsr_zifencei  -fdiagnostics-color=always -ffunction-sections -fdata-sections -Wall -Werror=all -Wno-error=unused-function -Wno-error=unused-variable -Wno-error=unused-but-set-variable -Wno-error=deprecated-declarations -Wextra -Wno-error=extra -Wno-unused-parameter -Wno-sign-compare -Wno-enum-conversion -gdwarf-4 -ggdb -nostartfiles -Og -fno-shrink-wrap -fmacro-prefix-map=D:/skapelser/flowophone/esp32/i2s_std=. -fmacro-prefix-map=D:/Espressif/frameworks/esp-idf-v5.5-2=/IDF -fstrict-volatile-bitfields -fno-jump-tables -fno-tree-switch-conversion -std=gnu17 -Wno-old-style-declaration -MD -MT esp-idf/main/CMakeFiles/__idf_main.dir/i2s_std_example_main.c.obj -MF esp-idf\main\CMakeFiles\__idf_main.dir\i2s_std_example_main.c.obj.d -o esp-idf/main/CMakeFiles/__idf_main.dir/i2s_std_example_main.c.obj -c D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c: In function 'read_buttons':
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:447:13: error: invalid storage class for function 'audio_task'
+  447 | static void audio_task(void *userData)
+      |             ^~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c: In function 'app_main':
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:511:14: warning: unused variable 'ret_num' [-Wunused-variable]
+  511 |     uint32_t ret_num = 0;
+      |              ^~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:510:15: warning: unused variable 'ret' [-Wunused-variable]
+  510 |     esp_err_t ret;
+      |               ^~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c: In function 'read_buttons':
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:673:1: error: expected declaration or statement at end of input
+  673 | }
+      | ^
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:673:1: error: expected declaration or statement at end of input
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c: At top level:
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:505:6: warning: 'app_main' defined but not used [-Wunused-function]
+  505 | void app_main(void)
+      |      ^~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:284:13: warning: 'tremolo_task' defined but not used [-Wunused-function]
+  284 | static void tremolo_task(void *userData)
+      |             ^~~~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:263:13: warning: 'vol_envelope' defined but not used [-Wunused-function]
+  263 | static void vol_envelope(void *userData)
+      |             ^~~~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:87:12: warning: 'adc_value' defined but not used [-Wunused-variable]
+   87 | static int adc_value = 0;
+      |            ^~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:76:17: warning: 'phaseAcc' defined but not used [-Wunused-variable]
+   76 | static uint32_t phaseAcc = 0;
+      |                 ^~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:70:14: warning: 'freq_q' defined but not used [-Wunused-variable]
+   70 | static float freq_q = 0;
+      |              ^~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:68:16: warning: 'tremolofreq' defined but not used [-Wunused-variable]
+   68 | static int16_t tremolofreq = 10;
+      |                ^~~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:67:17: warning: 'tremoloindex' defined but not used [-Wunused-variable]
+   67 | static uint16_t tremoloindex = 0;
+      |                 ^~~~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:65:16: warning: 'targetfreq' defined but not used [-Wunused-variable]
+   65 | static int16_t targetfreq = 0;
+      |                ^~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:64:16: warning: 'freqcounter' defined but not used [-Wunused-variable]
+   64 | static uint8_t freqcounter = 0;
+      |                ^~~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:63:16: warning: 'freqsum' defined but not used [-Wunused-variable]
+   63 | static int32_t freqsum = 0;
+      |                ^~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:59:16: warning: 'freqoffset' defined but not used [-Wunused-variable]
+   59 | static int16_t freqoffset = 0;
+      |                ^~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:58:16: warning: 'freq' defined but not used [-Wunused-variable]
+   58 | static int16_t freq = 163;
+      |                ^~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:57:17: warning: 'sweepvol' defined but not used [-Wunused-variable]
+   57 | static uint16_t sweepvol = 65535>>1;
+      |                 ^~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:50:16: warning: 'volsum' defined but not used [-Wunused-variable]
+   50 | static int16_t volsum = 0;
+      |                ^~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:49:16: warning: 'volcounter' defined but not used [-Wunused-variable]
+   49 | static uint8_t volcounter = 0;
+      |                ^~~~~~~~~~
+D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c:44:17: warning: 'i3' defined but not used [-Wunused-variable]
+   44 | static uint16_t i3 = 0;
+      |                 ^~
+ninja: build stopped: subcommand failed.
