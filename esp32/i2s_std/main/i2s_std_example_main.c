@@ -63,7 +63,12 @@ static uint16_t tremoloindex = 0;
 static int16_t tremolofreq = 10;
 
 static float freq_q = 0;
+static float freq_q2 = 0;
 static float pluss = 200;
+
+static int16_t freq2 = 0;
+static float pluss2 = 200;
+
 
 static uint8_t alt_pressed = 0;
 static uint8_t ctrl_pressed = 0;
@@ -137,14 +142,19 @@ static void continuous_adc_init(adc_channel_t *channel, uint8_t channel_num, adc
     adc_digi_pattern_config_t adc_pattern[SOC_ADC_PATT_LEN_MAX] = {0};
     dig_cfg.pattern_num = channel_num;
     for (int i = 0; i < channel_num; i++) {
-        adc_pattern[i].atten = ADC_ATTEN_DB_12;
+        
+        //if(i==1)
+        //    adc_pattern[i].atten = ADC_ATTEN_DB_2_5;
+        //else
+            adc_pattern[i].atten = ADC_ATTEN_DB_12;
+
         adc_pattern[i].channel = channel[i] & 0x7;
         adc_pattern[i].unit = ADC_UNIT;
         adc_pattern[i].bit_width = SOC_ADC_DIGI_MAX_BITWIDTH;
 
-        ESP_LOGI(TAG, "adc_pattern[%d].atten is :%"PRIx8, i, adc_pattern[i].atten);
-        ESP_LOGI(TAG, "adc_pattern[%d].channel is :%"PRIx8, i, adc_pattern[i].channel);
-        ESP_LOGI(TAG, "adc_pattern[%d].unit is :%"PRIx8, i, adc_pattern[i].unit);
+        //ESP_LOGI(TAG, "adc_pattern[%d].atten is :%"PRIx8, i, adc_pattern[i].atten);
+        //ESP_LOGI(TAG, "adc_pattern[%d].channel is :%"PRIx8, i, adc_pattern[i].channel);
+        //ESP_LOGI(TAG, "adc_pattern[%d].unit is :%"PRIx8, i, adc_pattern[i].unit);
     }
     dig_cfg.adc_pattern = adc_pattern;
     ESP_ERROR_CHECK(adc_continuous_config(handle, &dig_cfg));
@@ -164,7 +174,7 @@ static void write_sound()
         
         int32_t tmp = 0;
 
-        if(mode < 1)
+        if(mode == 0)
         {
             tmp = (vol * violin[(int32_t) iff] );
             iff += (pluss/500.0f);
@@ -176,28 +186,37 @@ static void write_sound()
 
 
         }
-        else if(mode < 2)
+        else if(mode == 1)
         {
-            tmp = (vol * miau[(int16_t) iff] );
+            if(vol > 10)
+              tmp =  miau[(uint16_t) iff];
+
             iff += (pluss/200.0f);
 
-            tmp = tmp >> 11;
+            tmp = tmp >> 1;
 
-            if(iff > 50000)
+            if(iff > 42000)
                 iff = 0;
 
         }
         //phat saw
-        else if(mode < 3)
+        else if(mode == 2)
         {
+
+            
+            //uint16_t sinestuff = (sine65536[tremoloindex] + 17000)>>7;
+            //tmp = (sinestuff * (vol * saw[i] + vol * saw[i2]/2 )) >> 8;
+
             tmp = (vol * saw[i] + vol * saw[i2]/2 );
+
             i += (uint16_t) (pluss);
             i2 += (uint16_t) (pluss*1.5);
 
             tmp = tmp >> 10;
+            //tmp = tmp >> 25;
         }
         //soft square
-        else if(mode < 4)
+        else if(mode == 3)
         {
             //float vajsing = 1 + (sine65536[tremoloindex])/65536.0f/3.0f;
 
@@ -205,11 +224,11 @@ static void write_sound()
             i += (uint16_t) (pluss);
             //i += 200;
 
-            tmp = tmp >> 7;
+            tmp = tmp >> 10;
 
             //tremoloindex += 1;
         }
-        else if(mode < 5)
+        else if(mode == 4)
         {
             tmp = vol * (i > ontime)*16000;
             //tmp += vol * sine65536[tremoloindex];
@@ -220,7 +239,7 @@ static void write_sound()
 
             //tremoloindex += 2;
         }
-        else if(mode < 6)
+        else if(mode == 5)
         {
             tmp = vol * ( saw[i] );
             i += (uint16_t) (pluss);
@@ -229,24 +248,55 @@ static void write_sound()
             tmp = tmp >> 11;
 
         }
-        else if(mode < 7)
+        else if(mode == 6)
         {
-            tmp = (vol * miau[(int32_t) iff] );
-            iff += (pluss/200.0f);
+            tmp = vol * ( softsquare[i] + (softsquare[i2]>>1) );
+            i += (uint16_t) (pluss);
+            i2 += (uint16_t) (pluss*1.5);
+            //i += 200;
 
-            tmp = tmp >> 11;
+            tmp = tmp >> 10;
 
-            if(iff > 117888)
-                iff = 0;
+        }
+        //DRUM mode???
+        else if(mode == 7)
+        {
+            if(vol > 20)
+            {
+                if(freq < 1000)
+                {
+                    tmp = kickdrum[i];
+                    i += 1;
+
+                    if(i > 50000)
+                        i = 0;
+
+                }
+                else if(freq > 1000)
+                {
+                    tmp = phatsnare[i];
+                    i += 1;
+
+                    
+                }
+            }else{
+                i = 0;
+            }
+
+            //tmp = vol * ( softsquare[i] + (softsquare[i2]>>1) );
+            //i += (uint16_t) (pluss);
+            //i2 += (uint16_t) (pluss*1.5);
+            //i += 200;
+
+            tmp = tmp >> 2;
 
         }
 
 
-        
         output_buffer[ii] =  (int16_t) tmp;
         
 
-        if(vol < 150)
+        if(vol < 80)
             iff = 0;
 
     }
@@ -297,161 +347,98 @@ void read_buttons(void *userData)
 {
 
     while(1){
-    uint32_t ret_num = 0;
-    esp_err_t ret = adc_continuous_read(handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
-    if (ret == ESP_OK) {
-        //ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
 
-        adc_continuous_data_t parsed_data[ret_num / SOC_ADC_DIGI_RESULT_BYTES];
-        uint32_t num_parsed_samples = 0;
 
-        esp_err_t parse_ret = adc_continuous_parse_data(handle, result, ret_num, parsed_data, &num_parsed_samples);
-        if (parse_ret == ESP_OK) {
-            for (int i = 0; i < num_parsed_samples; i++) {
-                if (parsed_data[i].valid) {
-                    //ESP_LOGI(TAG, "ADC%d, Channel: %d, Value: %"PRIu32,
-                    //            parsed_data[i].unit + 1,
-                    //            parsed_data[i].channel,
-                    //            parsed_data[i].raw_data);
+        uint32_t ret_num = 0;
+        esp_err_t ret = adc_continuous_read(handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
+        if (ret == ESP_OK) {
+            //ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
 
-                    if(parsed_data[i].channel == 0)
-                    {
-                        int16_t tmpfreq = parsed_data[i].raw_data;
+            adc_continuous_data_t parsed_data[ret_num / SOC_ADC_DIGI_RESULT_BYTES];
+            uint32_t num_parsed_samples = 0;
 
-                        if(tmpfreq > 60)
+            esp_err_t parse_ret = adc_continuous_parse_data(handle, result, ret_num, parsed_data, &num_parsed_samples);
+            if (parse_ret == ESP_OK) {
+                for (int i = 0; i < num_parsed_samples; i++) {
+                    if (parsed_data[i].valid) {
+                        //ESP_LOGI(TAG, "ADC%d, Channel: %d, Value: %"PRIu32,
+                        //            parsed_data[i].unit + 1,
+                        //            parsed_data[i].channel,
+                        //            parsed_data[i].raw_data);
+
+                        if(parsed_data[i].channel == 0)
                         {
-                            //freqsum += tmpfreq;
-                            freq = tmpfreq;
+                            int16_t tmpfreq = parsed_data[i].raw_data;
+
+                            if(tmpfreq > 60)
+                            {
+                                //freqsum += tmpfreq;
+                                freq = tmpfreq;
+
+                                freq += sine65536[tremoloindex]>>7;
+
+                            }
                         }
-                    }
 
-                    if(parsed_data[i].channel == 1)
-                    {
-                        int16_t tmpvol = (parsed_data[i].raw_data - 760);
+                        else if(parsed_data[i].channel == 1)
+                        {
+                            //printf("%d\n", (int)parsed_data[i].raw_data);
 
-                        if(tmpvol < 0)
-                            tmpvol = 0;
 
-                        if(tmpvol >= 2047)
-                            tmpvol = 2047;
+                            int16_t tmpvol = (parsed_data[i].raw_data - 730);
+
+                            if(tmpvol < 0)
+                                tmpvol = 0;
+
+                            if(tmpvol >= 2047)
+                                tmpvol = 2047;
+                            
+
+                            volsum += tmpvol;
+
+                        }
+                        else if(parsed_data[i].channel == 2)
+                        {
+                            freqoffset = parsed_data[i].raw_data;
+
+                        }
+                        else if(parsed_data[i].channel == 3)
+                        {
+                            mode = parsed_data[i].raw_data >> 8;
+
+                            printf("mode %d\n", (int)mode);
+                        }
+                        //else if(parsed_data[i].channel == 5)
+                        //{
+                            //mode = parsed_data[i].raw_data >> 9;
+
+                            //printf("%d\n", (int)parsed_data[i].raw_data);
+                        //}
                         
 
-                        volsum += tmpvol;
-
-                        //volcounter++;
-
-                        //if(volcounter == 15)
-                        //{
-                        //    targetvol = volsum >> 4;
-                        //    volcounter = 0;
-                        //    volsum = 0;
-                        //}
-
+                    } else {
+                        //ESP_LOGW(TAG, "Invalid data [ADC%d_Ch%d_%"PRIu32"]",
+                        //            parsed_data[i].unit + 1,
+                        //            parsed_data[i].channel,
+                        //            parsed_data[i].raw_data);
                     }
-                    
-
-                } else {
-                    ESP_LOGW(TAG, "Invalid data [ADC%d_Ch%d_%"PRIu32"]",
-                                parsed_data[i].unit + 1,
-                                parsed_data[i].channel,
-                                parsed_data[i].raw_data);
                 }
             }
+
         }
 
-    }
+        //now volsum has 16 samples!
+        //targetvol = volsum>>4;
+        targetvol = volsum;
 
-    //now volsum has 16 samples!
-    targetvol = volsum>>4;
-    //reset volsum
-    volsum = 0;
+        //printf("%d\n", (int)volsum);
 
-    //same with freq!
-    //freq = freqsum>>4;
-    //freqsum = 0;
+        //reset volsum
+        volsum = 0;
 
-    int16_t freqoffsetq = freqoffset/100;
-
-    float freqoffsetf = freqoffsetq / 12.0f;
-
-    freq_q = (float) (freq + 100) / 1860.0f;
-
-    pluss = 45 * pow(2.0f, freq_q + freqoffsetf);
-
-
-
-
-    //while(1)
-    //{
-    if(gpio_get_level(CTRL_BUTTON_PIN))
-        ctrl_pressed = 1;
-    else
-        ctrl_pressed = 0;
-
-
-    if(gpio_get_level(ALT_BUTTON_PIN))
-        alt_pressed = 1;
-    else
-        alt_pressed = 0;
-
-
-
-
-        
-        
-
-        /*
-        //min 750 max 2800!
-        adc_oneshot_read(adc_handle, ADC_CHANNEL_1, &adc_value);
-
-
-        //targetvol = (adc_value - 740);
-
-        int16_t tmpvol = (adc_value - 740);
-
-
-
-        if(tmpvol < 0)
-            tmpvol = 0;
-
-        if(tmpvol >= 2047)
-            tmpvol = 2047;
-        
-
-        volsum += tmpvol>>2;
-
-        volcounter++;
-
-        if(volcounter == 15)
-        {
-            targetvol = volsum >> 4;
-            volcounter = 0;
-            volsum = 0;
-        }
-
-        //targetvol = 500;
-        //vol = 500;
-
-        //printf("%d\n", targetvol);
-
-        
-        adc_oneshot_read(adc_handle, ADC_CHANNEL_0, &adc_value);
-
-        if(adc_value > 40)
-            //freqsum += adc_value;
-            freq = adc_value;
-        
-        //freqcounter++;
-
-        //if(freqcounter == 3)
-        //{
-        //    freq = freqsum >> 2;
-        //    freqcounter = 0;
-        //    freqsum = 0;
-        //}
-
-
-        //freq = 163;
+        //same with freq!
+        //freq = freqsum>>4;
+        //freqsum = 0;
 
         int16_t freqoffsetq = freqoffset/100;
 
@@ -461,39 +448,134 @@ void read_buttons(void *userData)
 
         pluss = 45 * pow(2.0f, freq_q + freqoffsetf);
 
-        //printf("%d\n", vol);
 
-
-        adc_oneshot_read(adc_handle, ADC_CHANNEL_2, &adc_value);
-
-        if(ctrl_pressed)
-            tremolofreq = adc_value>>2;
-        else
-            freqoffset = adc_value;
-
-
-        adc_oneshot_read(adc_handle, ADC_CHANNEL_3, &adc_value);
-
-        if(!ctrl_pressed)
-            mode = adc_value >> 9;
-
-
-        adc_oneshot_read(adc_handle, ADC_CHANNEL_4, &adc_value);
-
-        if(ctrl_pressed)
-            ontime = adc_value << 3;
-
-        //printf("ontime %d\n", ontime);
+        //pluss2 
         
+        //pluss = 45 * pow(2.0f, freq_q);
+
+
+
+
+        //while(1)
+        //{
+        if(gpio_get_level(CTRL_BUTTON_PIN))
+            ctrl_pressed = 1;
+        else
+            ctrl_pressed = 0;
+
+
+        if(gpio_get_level(ALT_BUTTON_PIN))
+            alt_pressed = 1;
+        else
+            alt_pressed = 0;
+
+
+
+
+            
+            
+
+            /*
+            //min 750 max 2800!
+            adc_oneshot_read(adc_handle, ADC_CHANNEL_1, &adc_value);
+
+
+            //targetvol = (adc_value - 740);
+
+            int16_t tmpvol = (adc_value - 740);
+
+
+
+            if(tmpvol < 0)
+                tmpvol = 0;
+
+            if(tmpvol >= 2047)
+                tmpvol = 2047;
+            
+
+            volsum += tmpvol>>2;
+
+            volcounter++;
+
+            if(volcounter == 15)
+            {
+                targetvol = volsum >> 4;
+                volcounter = 0;
+                volsum = 0;
+            }
+
+            //targetvol = 500;
+            //vol = 500;
+
+            //printf("%d\n", targetvol);
+
+            
+            adc_oneshot_read(adc_handle, ADC_CHANNEL_0, &adc_value);
+
+            if(adc_value > 40)
+                //freqsum += adc_value;
+                freq = adc_value;
+            
+            //freqcounter++;
+
+            //if(freqcounter == 3)
+            //{
+            //    freq = freqsum >> 2;
+            //    freqcounter = 0;
+            //    freqsum = 0;
+            //}
+
+
+            //freq = 163;
+
+            int16_t freqoffsetq = freqoffset/100;
+
+            float freqoffsetf = freqoffsetq / 12.0f;
+
+            freq_q = (float) (freq + 100) / 1860.0f;
+
+            pluss = 45 * pow(2.0f, freq_q + freqoffsetf);
+
+            //printf("%d\n", vol);
+
+
+            adc_oneshot_read(adc_handle, ADC_CHANNEL_2, &adc_value);
+
+            if(ctrl_pressed)
+                tremolofreq = adc_value>>2;
+            else
+                freqoffset = adc_value;
+
+
+            adc_oneshot_read(adc_handle, ADC_CHANNEL_3, &adc_value);
+
+            if(!ctrl_pressed)
+                mode = adc_value >> 9;
+
+
+            adc_oneshot_read(adc_handle, ADC_CHANNEL_4, &adc_value);
+
+            if(ctrl_pressed)
+                ontime = adc_value << 3;
+
+            //printf("ontime %d\n", ontime);
+            
+            //vTaskDelay(pdMS_TO_TICKS(10)); // Delay ms
+        //}
+
+        */
+
         //vTaskDelay(pdMS_TO_TICKS(10)); // Delay ms
-    //}
 
-    */
 
-    //vTaskDelay(pdMS_TO_TICKS(10)); // Delay ms
 
-    vTaskDelay(1);
-}
+        tremoloindex+=1600;
+
+
+        
+
+        vTaskDelay(1);
+    }
 }
 
 

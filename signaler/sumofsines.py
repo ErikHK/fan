@@ -89,7 +89,7 @@ def samplify_signal(insignal):
 
 
 
-signal =  samplify_signal( read_wav("boathorn_44100.wav") / 100.0 )
+signal =  samplify_signal( read_wav("kickdrum.wav") / 100.0 )
 
 #signal = generate_long_sine()
 

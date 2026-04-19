@@ -96,6 +96,13 @@ def generate_long_saw():
 
     return signal
 
+def generate_zeros(num):
+    signal = []
+    for i in range(num):
+        signal.append(0)
+    return signal
+
+
 def print_signal(signal):
     stri = "const __flash uint8_t s[] = {"
     for s in signal:
@@ -105,7 +112,9 @@ def print_signal(signal):
 
 #signal = generate_saw()
 
-signal = generate_organ()
+#signal = generate_organ()
+
+signal = generate_zeros(10000)
 
 print_signal(signal)
 
