@@ -37,6 +37,11 @@ bool AlarmState = false;
 int16_t output_buffer[16384];
 
 
+static uint16_t ontime = 0;
+static uint16_t offtime = 0;
+
+static uint8_t ison = 0;
+
 static uint16_t i = 0;
 static float iff = 0;
 
@@ -45,15 +50,15 @@ static uint16_t i3 = 0;
 
 
 static int16_t vol = 20;
-static int16_t targetvol = 20;
+static int32_t targetvol = 20;
 static uint8_t volcounter = 0;
 static int32_t volsum = 0;
 
 static uint16_t sweepvol = 65535>>1;
 static int16_t freq = 163;
 static int16_t freqoffset = 0;
-static int16_t mode = 2;
-static int16_t ontime = 30000;
+static int16_t mode = 3;
+static int16_t dutycycle = 30000;
 
 static int32_t freqsum = 0;
 static uint8_t freqcounter = 0;
@@ -61,6 +66,7 @@ static int16_t targetfreq = 0;
 
 static uint16_t tremoloindex = 0;
 static int16_t tremolofreq = 10;
+static int16_t tremoloamount = 100;
 
 static float freq_q = 0;
 static float freq_q2 = 0;
@@ -176,7 +182,7 @@ static void write_sound()
 
         if(mode == 0)
         {
-            tmp = (vol * violin[(int32_t) iff] );
+            //tmp = (vol * violin[(int32_t) iff] );
             iff += (pluss/500.0f);
 
             tmp = tmp >> 11;
@@ -195,7 +201,7 @@ static void write_sound()
 
             tmp = tmp >> 1;
 
-            if(iff > 42000)
+            if(iff > 33000)
                 iff = 0;
 
         }
@@ -203,17 +209,18 @@ static void write_sound()
         else if(mode == 2)
         {
 
-            
             //uint16_t sinestuff = (sine65536[tremoloindex] + 17000)>>7;
             //tmp = (sinestuff * (vol * saw[i] + vol * saw[i2]/2 )) >> 8;
 
+            //vol = 60000;
             tmp = (vol * saw[i] + vol * saw[i2]/2 );
+            //tmp = saw[i];
 
             i += (uint16_t) (pluss);
             i2 += (uint16_t) (pluss*1.5);
 
             tmp = tmp >> 10;
-            //tmp = tmp >> 25;
+            
         }
         //soft square
         else if(mode == 3)
@@ -224,18 +231,29 @@ static void write_sound()
             i += (uint16_t) (pluss);
             //i += 200;
 
-            tmp = tmp >> 10;
+            tmp = tmp >> 8;
+
+            tmp = tmp - 32760;
 
             //tremoloindex += 1;
         }
         else if(mode == 4)
         {
-            tmp = vol * (i > ontime)*16000;
+            //vol = 2047;
+
+            //printf("vol:  %d\n", (int)vol);
+
+            tmp = vol * (i > dutycycle)*16000;
+            
             //tmp += vol * sine65536[tremoloindex];
 
             i += (uint16_t) (pluss);
+            tmp = (tmp >> 9);
+         
+            tmp = tmp - 32000;
 
-            tmp = tmp >> 11;
+            //printf("tmp:  %d\n", (int)tmp);
+
 
             //tremoloindex += 2;
         }
@@ -261,9 +279,9 @@ static void write_sound()
         //DRUM mode???
         else if(mode == 7)
         {
-            if(vol > 20)
+            if(ison)
             {
-                if(freq < 1000)
+                if(freq < 500)
                 {
                     tmp = kickdrum[i];
                     i += 1;
@@ -272,13 +290,26 @@ static void write_sound()
                         i = 0;
 
                 }
-                else if(freq > 1000)
+                else if(freq >= 500 && freq < 3000)
                 {
                     tmp = phatsnare[i];
                     i += 1;
+   
+                }
+                
+                else
+                {
+                    tmp = ifeelgood[i];
+                    i += 1;
 
+                    if(i > 50000)
+                        i = 0;
                     
                 }
+                        
+
+                //if(i > 65000)
+                //    ison = 0;
             }else{
                 i = 0;
             }
@@ -288,12 +319,21 @@ static void write_sound()
             //i2 += (uint16_t) (pluss*1.5);
             //i += 200;
 
-            tmp = tmp >> 2;
+            ///////tmp = tmp >> 2;
 
         }
 
 
-        output_buffer[ii] =  (int16_t) tmp;
+        //if(ctrl_pressed)
+            output_buffer[ii] =  (int16_t) tmp;
+        //else
+        //    output_buffer[ii] = 0;
+
+
+        //i++;
+        //output_buffer[ii] = (int16_t) (vol * phatsnare[i]) >> 8;
+        
+        //output_buffer[ii] = (int16_t) ( saw[i]) >> 2;
         
 
         if(vol < 80)
@@ -370,14 +410,25 @@ void read_buttons(void *userData)
                         {
                             int16_t tmpfreq = parsed_data[i].raw_data;
 
-                            if(tmpfreq > 60)
+                            if(tmpfreq > 80)
                             {
-                                //freqsum += tmpfreq;
+                                freqsum += tmpfreq;
                                 freq = tmpfreq;
 
-                                freq += sine65536[tremoloindex]>>7;
+                                //freq += sine65536[tremoloindex]>>7;
 
                             }
+
+                            int16_t tmpamount = tremoloamount / 20;
+
+                            if(tmpamount < 20)
+                                tmpamount = 20;
+
+                            //printf("%d\n", (int16_t)tmpamount);
+                                
+                            if(ctrl_pressed)
+                                freq += sine65536[tremoloindex] / tmpamount;
+
                         }
 
                         else if(parsed_data[i].channel == 1)
@@ -385,16 +436,28 @@ void read_buttons(void *userData)
                             //printf("%d\n", (int)parsed_data[i].raw_data);
 
 
-                            int16_t tmpvol = (parsed_data[i].raw_data - 730);
+                            int16_t tmpvol = (parsed_data[i].raw_data - 800);
+                            
+                            //int16_t tmpvol = (parsed_data[i].raw_data - 730);
+
+
+
 
                             if(tmpvol < 0)
                                 tmpvol = 0;
 
                             if(tmpvol >= 2047)
                                 tmpvol = 2047;
-                            
 
-                            volsum += tmpvol;
+                            //printf("vol:  %d\n", (int)tmpvol);
+
+
+                            if(tmpvol > 30)
+                                volsum += tmpvol;
+
+                            
+                            //targetvol = tmpvol;
+                            
 
                         }
                         else if(parsed_data[i].channel == 2)
@@ -404,9 +467,10 @@ void read_buttons(void *userData)
                         }
                         else if(parsed_data[i].channel == 3)
                         {
-                            mode = parsed_data[i].raw_data >> 8;
+                            //////////////mode = parsed_data[i].raw_data >> 8;
+                            tremoloamount = parsed_data[i].raw_data;
 
-                            printf("mode %d\n", (int)mode);
+                            //printf("mode %d\n", (int)mode);
                         }
                         //else if(parsed_data[i].channel == 5)
                         //{
@@ -427,9 +491,16 @@ void read_buttons(void *userData)
 
         }
 
-        //now volsum has 16 samples!
-        //targetvol = volsum>>4;
-        targetvol = volsum;
+        //now volsum has 16 samples! really???
+        if( (volsum>>4) > 30)
+            targetvol = volsum>>4;
+        else
+            targetvol = 0;
+
+        //targetvol = volsum;
+        //printf("targetvol:  %d\n", (int)targetvol);
+
+        
 
         //printf("%d\n", (int)volsum);
 
@@ -449,15 +520,6 @@ void read_buttons(void *userData)
         pluss = 45 * pow(2.0f, freq_q + freqoffsetf);
 
 
-        //pluss2 
-        
-        //pluss = 45 * pow(2.0f, freq_q);
-
-
-
-
-        //while(1)
-        //{
         if(gpio_get_level(CTRL_BUTTON_PIN))
             ctrl_pressed = 1;
         else
@@ -470,109 +532,8 @@ void read_buttons(void *userData)
             alt_pressed = 0;
 
 
+        tremoloindex+=800;
 
-
-            
-            
-
-            /*
-            //min 750 max 2800!
-            adc_oneshot_read(adc_handle, ADC_CHANNEL_1, &adc_value);
-
-
-            //targetvol = (adc_value - 740);
-
-            int16_t tmpvol = (adc_value - 740);
-
-
-
-            if(tmpvol < 0)
-                tmpvol = 0;
-
-            if(tmpvol >= 2047)
-                tmpvol = 2047;
-            
-
-            volsum += tmpvol>>2;
-
-            volcounter++;
-
-            if(volcounter == 15)
-            {
-                targetvol = volsum >> 4;
-                volcounter = 0;
-                volsum = 0;
-            }
-
-            //targetvol = 500;
-            //vol = 500;
-
-            //printf("%d\n", targetvol);
-
-            
-            adc_oneshot_read(adc_handle, ADC_CHANNEL_0, &adc_value);
-
-            if(adc_value > 40)
-                //freqsum += adc_value;
-                freq = adc_value;
-            
-            //freqcounter++;
-
-            //if(freqcounter == 3)
-            //{
-            //    freq = freqsum >> 2;
-            //    freqcounter = 0;
-            //    freqsum = 0;
-            //}
-
-
-            //freq = 163;
-
-            int16_t freqoffsetq = freqoffset/100;
-
-            float freqoffsetf = freqoffsetq / 12.0f;
-
-            freq_q = (float) (freq + 100) / 1860.0f;
-
-            pluss = 45 * pow(2.0f, freq_q + freqoffsetf);
-
-            //printf("%d\n", vol);
-
-
-            adc_oneshot_read(adc_handle, ADC_CHANNEL_2, &adc_value);
-
-            if(ctrl_pressed)
-                tremolofreq = adc_value>>2;
-            else
-                freqoffset = adc_value;
-
-
-            adc_oneshot_read(adc_handle, ADC_CHANNEL_3, &adc_value);
-
-            if(!ctrl_pressed)
-                mode = adc_value >> 9;
-
-
-            adc_oneshot_read(adc_handle, ADC_CHANNEL_4, &adc_value);
-
-            if(ctrl_pressed)
-                ontime = adc_value << 3;
-
-            //printf("ontime %d\n", ontime);
-            
-            //vTaskDelay(pdMS_TO_TICKS(10)); // Delay ms
-        //}
-
-        */
-
-        //vTaskDelay(pdMS_TO_TICKS(10)); // Delay ms
-
-
-
-        tremoloindex+=1600;
-
-
-        
 
         vTaskDelay(1);
     }
@@ -613,10 +574,12 @@ void timer_callback(void *param)
 {
     //targetvol += 100;
 
+    
     if(targetvol > vol)
-            vol+=4;
+            vol+=1;
         else 
-            vol-=4;
+            vol-=1;
+        
 }
 
 
@@ -644,40 +607,6 @@ void app_main(void)
     ESP_ERROR_CHECK(adc_continuous_start(handle));
 
 
-/*
-    while(1){
-
-        ulTaskNotifyTake(pdTRUE, portMAX_DELAY);
-
-        while(1)
-        {
-
-        ret = adc_continuous_read(handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
-        if (ret == ESP_OK) {
-            ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
-
-            for (int i = 0; i < ret_num; i += SOC_ADC_DIGI_RESULT_BYTES) {
-                adc_digi_output_data_t *p = (adc_digi_output_data_t*)&result[i];
-                uint32_t chan_num = EXAMPLE_ADC_GET_CHANNEL(p);
-                uint32_t data = EXAMPLE_ADC_GET_DATA(p);
-                // Check the channel number validation, the data is invalid if the channel num exceed the maximum channel 
-                if (chan_num < SOC_ADC_CHANNEL_NUM(ADC_UNIT)) {
-                    //ESP_LOGI(TAG, "Unit: %s, Channel: %"PRIu32", Value: %"PRIx32, unit, chan_num, data);
-                    //ESP_LOGI(TAG, "Unit: %s, Channel: %"PRIu32", Value: %lu", chan_num, data);
-                    ESP_LOGI(TAG, "Channel: %d, Value: %lu", chan_num, data);
-                } else {
-                    ESP_LOGW(TAG, "Invalid data [_%"PRIu32"_%"PRIx32"]", chan_num, data);
-                }
-            }
-
-
-            vTaskDelay(1);
-
-        }
-    }
-    }
-*/
-
 
     //button read timer
     
@@ -701,35 +630,8 @@ void app_main(void)
 
     esp_timer_handle_t timer_handler;
     esp_timer_create(&my_timer_args, &timer_handler);
-    esp_timer_start_periodic(timer_handler, 10000);  // One Second = 1000000 micro second
+    esp_timer_start_periodic(timer_handler, 500);  // One Second = 1000000 micro second
 
-
-  /*
-    // Initialize ADC Oneshot Mode Driver on the ADC Unit
-    adc_oneshot_unit_init_cfg_t init_config = {
-        .unit_id = ADC_UNIT,
-
-    };
-    ESP_ERROR_CHECK(adc_oneshot_new_unit(&init_config, &adc_handle));
-
-    // Configure ADC channel
-    adc_oneshot_chan_cfg_t config = {
-        .bitwidth = ADC_BITWIDTH,
-        .atten = ADC_ATTEN_DB_12,
-    };
-
-    adc_oneshot_chan_cfg_t config1 = {
-        .bitwidth = ADC_BITWIDTH,
-        .atten = ADC_ATTEN,
-    };
-
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle, ADC_CHANNEL_0, &config));
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle, ADC_CHANNEL_1, &config1));
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle, ADC_CHANNEL_2, &config));
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle, ADC_CHANNEL_3, &config));
-    ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_handle, ADC_CHANNEL_4, &config));
-
-    */
 
     i2s_chan_config_t chan_cfg = I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_AUTO, I2S_ROLE_MASTER);
     ESP_ERROR_CHECK(i2s_new_channel(&chan_cfg, &tx_chan, NULL));
@@ -775,8 +677,6 @@ void app_main(void)
 
     gpio_config(&io_conf2);
 
-
-
     ESP_ERROR_CHECK(i2s_channel_init_std_mode(tx_chan, &std_cfg));
 
     ESP_ERROR_CHECK(i2s_channel_enable(tx_chan));
@@ -787,6 +687,7 @@ void app_main(void)
     xTaskCreate(audio_task, "audio", 4096, NULL, 2 | portPRIVILEGE_BIT, NULL);
     
     xTaskCreate(read_buttons, "read_buttons", 4096, NULL, ( 1 | portPRIVILEGE_BIT ), NULL);
+    
     //xTaskCreate(tremolo_task, "tremolo", 4096, NULL, 5, NULL);
     //xTaskCreate(vol_envelope, "volume", 4096, NULL, ( 1 | portPRIVILEGE_BIT ), NULL);
 }

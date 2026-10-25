@@ -84,12 +84,12 @@ def samplify_signal(insignal):
     minv = min(insignal)
     diff = maxv-minv
 
-    signal = 32767*(signal/diff )
+    signal = 30000*(signal/diff )
     return np.array(signal)#+abs(min(signal))
 
 
 
-signal =  samplify_signal( read_wav("kickdrum.wav") / 100.0 )
+signal =  samplify_signal( read_wav("ifeelgood.wav") / 100.0 )
 
 #signal = generate_long_sine()
 
