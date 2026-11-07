@@ -305,7 +305,7 @@ static void write_sound()
             if((uint32_t)iff > 31942)
                 iff = 0;
 
-            tmp = tmp >> 12;
+            tmp = tmp >> 10;
 
             tmp = tmp - 32760;
             
@@ -570,8 +570,8 @@ void read_buttons(void *userData)
         }
 
         //now volsum has 16 samples! really???
-        if( (volsum) > 2)
-            targetvol = volsum;
+        if( (volsum>>2) > 1)
+            targetvol = volsum>>2;
         else
             targetvol = 0;
 
