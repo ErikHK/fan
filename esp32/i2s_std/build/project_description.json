@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "i2s_std_example",
-    "project_version":    "ad50c9e-dirty",
+    "project_version":    "a26b3a0-dirty",
     "project_path":       "D:/skapelser/flowophone/esp32/i2s_std",
     "idf_path":           "D:/Espressif/frameworks/esp-idf-v5.5-2",
     "build_dir":          "D:/skapelser/flowophone/esp32/i2s_std/build",
@@ -21,13 +21,28 @@
     "monitor_toolprefix": "riscv32-esp-elf-",
     "c_compiler":         "D:/Espressif/tools/riscv32-esp-elf/esp-14.2.0_20251107/riscv32-esp-elf/bin/riscv32-esp-elf-gcc.exe",
     "config_environment" : {
-        "COMPONENT_KCONFIGS" : "D:/Espressif/frameworks/esp-idf-v5.5-2/components/driver/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_common/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ana_cmpr/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_bitscrambler/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_dac/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gpio/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gptimer/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2c/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ledc/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_mcpwm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_parlio/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_pcnt/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_rmt/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_tsens/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_twai/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_partition/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_pm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_psram/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_ringbuf/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_security/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/hal/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/mbedtls/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/pthread/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/soc/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/Kconfig",
-        "COMPONENT_KCONFIGS_PROJBUILD" : "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_app_format/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esptool_py/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/partition_table/Kconfig.projbuild;D:/skapelser/flowophone/esp32/i2s_std/main/Kconfig.projbuild"
+        "COMPONENT_KCONFIGS" : "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_trace/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/bt/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/driver/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_coex/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_common/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ana_cmpr/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_bitscrambler/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_cam/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_dac/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gpio/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gptimer/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2c/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_isp/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_jpeg/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ledc/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_mcpwm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_parlio/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_pcnt/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_rmt/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_touch_sens/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_tsens/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_twai/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_eth/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_event/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hid/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_client/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_ota/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_server/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_partition/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_pm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_psram/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_ringbuf/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_security/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_wifi/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/hal/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/mbedtls/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt/esp-mqtt/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_sec_provider/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/openthread/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/pthread/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/soc/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/ulp/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/usb/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/vfs/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/Kconfig;D:/Espressif/frameworks/esp-idf-v5.5-2/components/wifi_provisioning/Kconfig",
+        "COMPONENT_KCONFIGS_PROJBUILD" : "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_app_format/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_tee/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/esptool_py/Kconfig.projbuild;D:/Espressif/frameworks/esp-idf-v5.5-2/components/partition_table/Kconfig.projbuild;D:/skapelser/flowophone/esp32/i2s_std/main/Kconfig.projbuild"
     },
     "common_component_reqs": [ "cxx", "newlib", "freertos", "esp_hw_support", "heap", "log", "soc", "hal", "esp_rom", "esp_common", "esp_system", "riscv" ],
-    "build_components" : [ "app_update", "bootloader", "bootloader_support", "cxx", "driver", "efuse", "esp_adc", "esp_app_format", "esp_bootloader_format", "esp_common", "esp_driver_ana_cmpr", "esp_driver_bitscrambler", "esp_driver_dac", "esp_driver_gpio", "esp_driver_gptimer", "esp_driver_i2c", "esp_driver_i2s", "esp_driver_ledc", "esp_driver_mcpwm", "esp_driver_parlio", "esp_driver_pcnt", "esp_driver_rmt", "esp_driver_sdio", "esp_driver_sdm", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_tsens", "esp_driver_twai", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_hw_support", "esp_mm", "esp_partition", "esp_pm", "esp_psram", "esp_ringbuf", "esp_rom", "esp_security", "esp_system", "esp_timer", "esptool_py", "freertos", "hal", "heap", "i2s_examples_common", "log", "main", "mbedtls", "newlib", "partition_table", "pthread", "riscv", "sdmmc", "soc", "spi_flash", "" ],
-    "build_component_paths" : [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_update", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/cxx", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/driver", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_app_format", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_bootloader_format", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_common", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ana_cmpr", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_bitscrambler", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_dac", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gpio", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gptimer", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ledc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_mcpwm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_parlio", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_pcnt", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_rmt", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdio", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdmmc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdspi", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_tsens", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_twai", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_partition", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_pm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_psram", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_ringbuf", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_security", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esptool_py", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/hal", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap", "D:/Espressif/frameworks/esp-idf-v5.5-2/examples/peripherals/i2s/i2s_examples_common", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log", "D:/skapelser/flowophone/esp32/i2s_std/main", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mbedtls", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/partition_table", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/pthread", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/sdmmc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/soc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash", "" ],
+    "build_components" : [ "app_trace", "app_update", "bootloader", "bootloader_support", "bt", "cmock", "console", "cxx", "driver", "efuse", "esp-tls", "esp_adc", "esp_app_format", "esp_bootloader_format", "esp_coex", "esp_common", "esp_driver_ana_cmpr", "esp_driver_bitscrambler", "esp_driver_cam", "esp_driver_dac", "esp_driver_gpio", "esp_driver_gptimer", "esp_driver_i2c", "esp_driver_i2s", "esp_driver_isp", "esp_driver_jpeg", "esp_driver_ledc", "esp_driver_mcpwm", "esp_driver_parlio", "esp_driver_pcnt", "esp_driver_ppa", "esp_driver_rmt", "esp_driver_sdio", "esp_driver_sdm", "esp_driver_sdmmc", "esp_driver_sdspi", "esp_driver_spi", "esp_driver_touch_sens", "esp_driver_tsens", "esp_driver_twai", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_eth", "esp_event", "esp_gdbstub", "esp_hal_ieee802154", "esp_hid", "esp_http_client", "esp_http_server", "esp_https_ota", "esp_https_server", "esp_hw_support", "esp_lcd", "esp_local_ctrl", "esp_mm", "esp_netif", "esp_netif_stack", "esp_partition", "esp_phy", "esp_pm", "esp_psram", "esp_ringbuf", "esp_rom", "esp_security", "esp_system", "esp_tee", "esp_timer", "esp_vfs_console", "esp_wifi", "espcoredump", "esptool_py", "fatfs", "freertos", "hal", "heap", "http_parser", "i2s_examples_common", "idf_test", "ieee802154", "json", "log", "lwip", "main", "mbedtls", "mqtt", "newlib", "nvs_flash", "nvs_sec_provider", "openthread", "partition_table", "protobuf-c", "protocomm", "pthread", "riscv", "rt", "sdmmc", "soc", "spi_flash", "spiffs", "tcp_transport", "ulp", "unity", "usb", "vfs", "wear_levelling", "wifi_provisioning", "wpa_supplicant", "" ],
+    "build_component_paths" : [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_trace", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_update", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bt", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/cmock", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/cxx", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/driver", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_adc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_app_format", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_bootloader_format", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_coex", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_common", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ana_cmpr", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_bitscrambler", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_cam", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_dac", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gpio", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_gptimer", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_isp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_jpeg", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ledc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_mcpwm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_parlio", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_pcnt", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ppa", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_rmt", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdio", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdmmc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_sdspi", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_touch_sens", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_tsens", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_twai", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_eth", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_event", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hal_ieee802154", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hid", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_client", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_ota", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_server", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_local_ctrl", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif_stack", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_partition", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_pm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_psram", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_ringbuf", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_rom", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_security", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_tee", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_vfs_console", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_wifi", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esptool_py", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/freertos", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/hal", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/http_parser", "D:/Espressif/frameworks/esp-idf-v5.5-2/examples/peripherals/i2s/i2s_examples_common", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/idf_test", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/json", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip", "D:/skapelser/flowophone/esp32/i2s_std/main", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mbedtls", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_sec_provider", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/openthread", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/partition_table", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protobuf-c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/pthread", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/rt", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/sdmmc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/soc", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ulp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/usb", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/vfs", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wifi_provisioning", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wpa_supplicant", "" ],
     "build_component_info" : {
+        "app_trace": {
+            "alias": "idf::app_trace",
+            "target": "___idf_app_trace",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_trace",
+            "type": "LIBRARY",
+            "lib": "__idf_app_trace",
+            "reqs": [ "esp_timer" ],
+            "priv_reqs": [ "esp_driver_gptimer", "esp_driver_gpio", "esp_driver_uart" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/app_trace/libapp_trace.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_trace/app_trace.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_trace/app_trace_util.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_trace/host_file_io.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/app_trace/port/port_uart.c" ],
+            "include_dirs": [ "include" ]
+        },
         "app_update": {
             "alias": "idf::app_update",
             "target": "___idf_app_update",
@@ -72,6 +87,51 @@
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/bootloader_support/libbootloader_support.a",
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_common_loader.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_clock_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_mem.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_random.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_efuse.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/flash_encrypt.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/secure_boot.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_random_esp32h2.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/bootloader_flash/src/bootloader_flash.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/bootloader_flash/src/flash_qio_mode.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/bootloader_flash/src/bootloader_flash_config_esp32h2.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_utility.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/flash_partitions.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/esp_image_format.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/bootloader_sha.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader_support/src/esp32h2/secure_boot_secure_features.c" ],
             "include_dirs": [ "include", "bootloader_flash/include" ]
+        },
+        "bt": {
+            "alias": "idf::bt",
+            "target": "___idf_bt",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bt",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_bt",
+            "reqs": [ "esp_timer", "esp_wifi" ],
+            "priv_reqs": [ "nvs_flash", "soc", "esp_pm", "esp_phy", "esp_coex", "mbedtls", "esp_driver_uart", "vfs", "esp_ringbuf", "esp_driver_spi", "esp_driver_gpio", "esp_gdbstub" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": []
+        },
+        "cmock": {
+            "alias": "idf::cmock",
+            "target": "___idf_cmock",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/cmock",
+            "type": "LIBRARY",
+            "lib": "__idf_cmock",
+            "reqs": [ "unity" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/cmock/libcmock.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/cmock/CMock/src/cmock.c" ],
+            "include_dirs": [ "CMock/src" ]
+        },
+        "console": {
+            "alias": "idf::console",
+            "target": "___idf_console",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console",
+            "type": "LIBRARY",
+            "lib": "__idf_console",
+            "reqs": [ "vfs", "esp_vfs_console" ],
+            "priv_reqs": [ "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/console/libconsole.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/commands.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/esp_console_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/esp_console_repl_internal.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/split_argv.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/linenoise/linenoise.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/esp_console_repl_chip.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_cmd.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_date.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_dbl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_dstr.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_end.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_file.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_hashtable.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_int.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_lit.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_rem.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_rex.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_str.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/arg_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console/argtable3/argtable3.c" ],
+            "include_dirs": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console" ]
         },
         "cxx": {
             "alias": "idf::cxx",
@@ -118,6 +178,21 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/esp32h2/esp_efuse_table.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/esp32h2/esp_efuse_table_v0.0_v1.1.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/esp32h2/esp_efuse_fields.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/esp32h2/esp_efuse_rtc_calib.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/esp32h2/esp_efuse_utility.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/src/esp_efuse_api.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/src/esp_efuse_fields.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/src/esp_efuse_utility.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/src/efuse_controller/keys/with_key_purposes/esp_efuse_api_key.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/efuse/src/esp_efuse_startup.c" ],
             "include_dirs": [ "include", "esp32h2/include" ]
         },
+        "esp-tls": {
+            "alias": "idf::esp-tls",
+            "target": "___idf_esp-tls",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls",
+            "type": "LIBRARY",
+            "lib": "__idf_esp-tls",
+            "reqs": [ "mbedtls" ],
+            "priv_reqs": [ "http_parser", "esp_timer", "lwip" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp-tls/libesp-tls.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls/esp_tls.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls/esp-tls-crypto/esp_tls_crypto.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls/esp_tls_error_capture.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls/esp_tls_platform_port.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls/esp_tls_mbedtls.c" ],
+            "include_dirs": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls", "esp-tls-crypto" ]
+        },
         "esp_adc": {
             "alias": "idf::esp_adc",
             "target": "___idf_esp_adc",
@@ -161,6 +236,21 @@
             "managed_priv_reqs": [],
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_bootloader_format/libesp_bootloader_format.a",
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_bootloader_format/esp_bootloader_desc.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_coex": {
+            "alias": "idf::esp_coex",
+            "target": "___idf_esp_coex",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_coex",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_esp_coex",
+            "reqs": [],
+            "priv_reqs": [ "esp_timer", "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
             "include_dirs": [ "include" ]
         },
         "esp_common": {
@@ -207,6 +297,21 @@
             "file": "",
             "sources": [],
             "include_dirs": [ "include" ]
+        },
+        "esp_driver_cam": {
+            "alias": "idf::esp_driver_cam",
+            "target": "___idf_esp_driver_cam",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_cam",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_driver_cam",
+            "reqs": [ "esp_driver_isp", "esp_mm" ],
+            "priv_reqs": [ "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_driver_cam/libesp_driver_cam.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_cam/esp_cam_ctlr.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_cam/dvp_share_ctrl.c" ],
+            "include_dirs": [ "include", "interface" ]
         },
         "esp_driver_dac": {
             "alias": "idf::esp_driver_dac",
@@ -283,6 +388,36 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/i2s_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/i2s_std.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/i2s_pdm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/i2s_tdm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/i2s_etm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_i2s/i2s_platform.c" ],
             "include_dirs": [ "include" ]
         },
+        "esp_driver_isp": {
+            "alias": "idf::esp_driver_isp",
+            "target": "___idf_esp_driver_isp",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_isp",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_esp_driver_isp",
+            "reqs": [ "esp_mm" ],
+            "priv_reqs": [ "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": [ "include" ]
+        },
+        "esp_driver_jpeg": {
+            "alias": "idf::esp_driver_jpeg",
+            "target": "___idf_esp_driver_jpeg",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_jpeg",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_esp_driver_jpeg",
+            "reqs": [],
+            "priv_reqs": [ "esp_mm", "esp_pm", "esp_psram" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": [ "include" ]
+        },
         "esp_driver_ledc": {
             "alias": "idf::esp_driver_ledc",
             "target": "___idf_esp_driver_ledc",
@@ -341,6 +476,21 @@
             "managed_priv_reqs": [],
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_driver_pcnt/libesp_driver_pcnt.a",
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_pcnt/src/pulse_cnt.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_driver_ppa": {
+            "alias": "idf::esp_driver_ppa",
+            "target": "___idf_esp_driver_ppa",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_ppa",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_esp_driver_ppa",
+            "reqs": [],
+            "priv_reqs": [ "esp_mm", "esp_pm" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
             "include_dirs": [ "include" ]
         },
         "esp_driver_rmt": {
@@ -433,6 +583,21 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi/src/gpspi/spi_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi/src/gpspi/spi_master.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi/src/gpspi/spi_slave.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_spi/src/gpspi/spi_slave_hd.c" ],
             "include_dirs": [ "include" ]
         },
+        "esp_driver_touch_sens": {
+            "alias": "idf::esp_driver_touch_sens",
+            "target": "___idf_esp_driver_touch_sens",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_touch_sens",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_esp_driver_touch_sens",
+            "reqs": [],
+            "priv_reqs": [ "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": []
+        },
         "esp_driver_tsens": {
             "alias": "idf::esp_driver_tsens",
             "target": "___idf_esp_driver_tsens",
@@ -475,7 +640,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_driver_uart/libesp_driver_uart.a",
-            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/src/uart.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/src/uart_wakeup.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/src/uhci.c" ],
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/src/uart.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/src/uart_wakeup.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/src/uhci.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_uart/src/uart_vfs.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_driver_usb_serial_jtag": {
@@ -490,7 +655,142 @@
             "managed_reqs": [],
             "managed_priv_reqs": [],
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_driver_usb_serial_jtag/libesp_driver_usb_serial_jtag.a",
-            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c" ],
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_connection_monitor.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_driver_usb_serial_jtag/src/usb_serial_jtag_vfs.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_eth": {
+            "alias": "idf::esp_eth",
+            "target": "___idf_esp_eth",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_eth",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_eth",
+            "reqs": [ "esp_event" ],
+            "priv_reqs": [ "log", "esp_timer", "esp_driver_spi", "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_eth/libesp_eth.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_eth/src/esp_eth.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_eth/src/phy/esp_eth_phy_802_3.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_eth/src/esp_eth_netif_glue.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_event": {
+            "alias": "idf::esp_event",
+            "target": "___idf_esp_event",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_event",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_event",
+            "reqs": [ "log", "esp_common", "freertos" ],
+            "priv_reqs": [ "esp_timer" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_event/libesp_event.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_event/default_event_loop.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_event/esp_event.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_event/esp_event_private.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_gdbstub": {
+            "alias": "idf::esp_gdbstub",
+            "target": "___idf_esp_gdbstub",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_gdbstub",
+            "reqs": [ "freertos" ],
+            "priv_reqs": [ "soc", "esp_rom", "esp_system" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_gdbstub/libesp_gdbstub.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub/src/gdbstub.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub/src/gdbstub_transport.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub/src/packet.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub/src/port/riscv/gdbstub_riscv.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_gdbstub/src/port/riscv/rv_decode.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_hal_ieee802154": {
+            "alias": "idf::esp_hal_ieee802154",
+            "target": "___idf_esp_hal_ieee802154",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hal_ieee802154",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_hal_ieee802154",
+            "reqs": [],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_hal_ieee802154/libesp_hal_ieee802154.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hal_ieee802154/esp32h2/ieee802154_periph.c" ],
+            "include_dirs": [ "include", "esp32h2/include" ]
+        },
+        "esp_hid": {
+            "alias": "idf::esp_hid",
+            "target": "___idf_esp_hid",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hid",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_hid",
+            "reqs": [ "esp_event", "bt" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_hid/libesp_hid.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hid/src/esp_hidd.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hid/src/esp_hidh.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hid/src/esp_hid_common.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_http_client": {
+            "alias": "idf::esp_http_client",
+            "target": "___idf_esp_http_client",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_client",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_http_client",
+            "reqs": [ "lwip", "esp_event" ],
+            "priv_reqs": [ "tcp_transport", "http_parser" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_http_client/libesp_http_client.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_client/esp_http_client.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_client/lib/http_auth.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_client/lib/http_header.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_client/lib/http_utils.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_http_server": {
+            "alias": "idf::esp_http_server",
+            "target": "___idf_esp_http_server",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_http_server",
+            "reqs": [ "http_parser", "esp_event" ],
+            "priv_reqs": [ "mbedtls", "lwip", "esp_timer" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_http_server/libesp_http_server.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/src/httpd_main.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/src/httpd_parse.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/src/httpd_sess.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/src/httpd_txrx.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/src/httpd_uri.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/src/httpd_ws.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_http_server/src/util/ctrl_sock.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_https_ota": {
+            "alias": "idf::esp_https_ota",
+            "target": "___idf_esp_https_ota",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_ota",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_https_ota",
+            "reqs": [ "esp_http_client", "bootloader_support", "esp_bootloader_format", "esp_app_format", "esp_event", "esp_partition" ],
+            "priv_reqs": [ "log", "app_update" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_https_ota/libesp_https_ota.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_ota/src/esp_https_ota.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_https_server": {
+            "alias": "idf::esp_https_server",
+            "target": "___idf_esp_https_server",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_server",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_https_server",
+            "reqs": [ "esp_http_server", "esp-tls", "esp_event" ],
+            "priv_reqs": [ "lwip" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_https_server/libesp_https_server.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_https_server/src/https_server.c" ],
             "include_dirs": [ "include" ]
         },
         "esp_hw_support": {
@@ -508,6 +808,36 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/cpu.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/esp_cpu_intr.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/esp_memory_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/cpu_region_protect.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/esp_clk.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/clk_ctrl_os.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/hw_random.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/intr_alloc.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/mac_addr.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/periph_ctrl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/revision.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/rtc_module.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/regi2c_ctrl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/esp_gpio_reserve.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sar_periph_ctrl_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/io_mux.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/esp_clk_tree.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/esp_dma_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/gdma_link.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/spi_bus_lock.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/clk_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp_clk_tree_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/spi_share_hw_ctrl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/adc_share_hw_ctrl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_retention.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_modem.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_modes.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_console.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_mspi.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_usb.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_gpio.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_event.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_system_peripheral.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/gdma.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/deprecated/gdma_legacy.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/gdma_sleep_retention.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/gdma_etm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/esp_async_memcpy.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/dma/async_memcpy_gdma.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/systimer.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/esp_etm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/pau_regdma.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/regdma_link.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/modem_clock.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/mspi_timing_tuning/mspi_timing_tuning.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/sleep_wake_stub.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/esp_clock_output.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/power_supply/brownout.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/power_supply/vbat.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/rtc_clk_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/rtc_clk.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/pmu_param.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/pmu_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/pmu_sleep.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/rtc_time.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/chip_info.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/port/esp32h2/sar_periph_ctrl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/lowpower/port/esp32h2/sleep_cpu.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/lowpower/port/esp32h2/sleep_cpu_asm.S", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_hw_support/lowpower/port/esp32h2/sleep_clock.c" ],
             "include_dirs": [ "include", "include/soc", "include/soc/esp32h2", "dma/include", "ldo/include", "debug_probe/include", "mspi_timing_tuning/include", "mspi_timing_tuning/tuning_scheme_impl/include", "power_supply/include" ]
         },
+        "esp_lcd": {
+            "alias": "idf::esp_lcd",
+            "target": "___idf_esp_lcd",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_lcd",
+            "reqs": [ "driver", "esp_driver_gpio", "esp_driver_i2c", "esp_driver_spi" ],
+            "priv_reqs": [ "esp_mm", "esp_psram", "esp_pm", "esp_driver_i2s" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_lcd/libesp_lcd.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/src/esp_lcd_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/src/esp_lcd_panel_io.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/src/esp_lcd_panel_nt35510.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/src/esp_lcd_panel_ssd1306.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/src/esp_lcd_panel_st7789.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/src/esp_lcd_panel_ops.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/i2c/esp_lcd_panel_io_i2c_v1.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/i2c/esp_lcd_panel_io_i2c_v2.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/spi/esp_lcd_panel_io_spi.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_lcd/parl/esp_lcd_panel_io_parl.c" ],
+            "include_dirs": [ "include", "interface" ]
+        },
+        "esp_local_ctrl": {
+            "alias": "idf::esp_local_ctrl",
+            "target": "___idf_esp_local_ctrl",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_local_ctrl",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_local_ctrl",
+            "reqs": [ "protocomm", "esp_https_server" ],
+            "priv_reqs": [ "protobuf-c", "esp_netif" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_local_ctrl/libesp_local_ctrl.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_local_ctrl/src/esp_local_ctrl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_local_ctrl/src/esp_local_ctrl_handler.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_local_ctrl/proto-c/esp_local_ctrl.pb-c.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_local_ctrl/src/esp_local_ctrl_transport_httpd.c" ],
+            "include_dirs": [ "include" ]
+        },
         "esp_mm": {
             "alias": "idf::esp_mm",
             "target": "___idf_esp_mm",
@@ -523,6 +853,36 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm/esp_mmu_map.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm/port/esp32h2/ext_mem_layout.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm/esp_cache_msync.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm/esp_cache_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_mm/heap_align_hw.c" ],
             "include_dirs": [ "include" ]
         },
+        "esp_netif": {
+            "alias": "idf::esp_netif",
+            "target": "___idf_esp_netif",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_netif",
+            "reqs": [ "esp_event" ],
+            "priv_reqs": [ "esp_netif_stack" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_netif/libesp_netif.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/esp_netif_handlers.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/esp_netif_objects.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/esp_netif_defaults.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/lwip/esp_netif_lwip.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/lwip/esp_netif_sntp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/lwip/esp_netif_lwip_defaults.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/lwip/netif/wlanif.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/lwip/netif/ethernetif.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif/lwip/netif/esp_pbuf_ref.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_netif_stack": {
+            "alias": "idf::esp_netif_stack",
+            "target": "___idf_esp_netif_stack",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_netif_stack",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_esp_netif_stack",
+            "reqs": [ "lwip" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": []
+        },
         "esp_partition": {
             "alias": "idf::esp_partition",
             "target": "___idf_esp_partition",
@@ -537,6 +897,21 @@
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_partition/libesp_partition.a",
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_partition/partition.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_partition/partition_target.c" ],
             "include_dirs": [ "include" ]
+        },
+        "esp_phy": {
+            "alias": "idf::esp_phy",
+            "target": "___idf_esp_phy",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_phy",
+            "reqs": [],
+            "priv_reqs": [ "nvs_flash", "esp_driver_gpio", "efuse", "esp_timer", "esp_wifi" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_phy/libesp_phy.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy/src/phy_override.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy/src/lib_printf.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy/src/phy_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy/src/phy_init_esp32hxx.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_phy/src/btbb_init.c" ],
+            "include_dirs": [ "include", "esp32h2/include" ]
         },
         "esp_pm": {
             "alias": "idf::esp_pm",
@@ -628,6 +1003,21 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/esp_err.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/crosscore_int.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/esp_ipc.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/esp_system_console.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/freertos_hooks.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/int_wdt.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/panic.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/esp_system.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/startup.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/startup_funcs.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/system_time.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/stack_check.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/ubsan.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/xt_wdt.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/task_wdt/task_wdt.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/task_wdt/task_wdt_impl_timergroup.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/systick_etm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/hw_stack_guard.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/cpu_start.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/panic_handler.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/esp_system_chip.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/image_process.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/arch/riscv/expression_with_stack.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/arch/riscv/panic_arch.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/arch/riscv/debug_helpers.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/arch/riscv/debug_stubs.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/soc/esp32h2/clk.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/soc/esp32h2/reset_reason.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/soc/esp32h2/system_internal.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_system/port/soc/esp32h2/cache_err_int.c" ],
             "include_dirs": [ "include" ]
         },
+        "esp_tee": {
+            "alias": "idf::esp_tee",
+            "target": "___idf_esp_tee",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_tee",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_esp_tee",
+            "reqs": [],
+            "priv_reqs": [ "efuse", "esp_security", "esp_system", "spi_flash" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": [ "include" ]
+        },
         "esp_timer": {
             "alias": "idf::esp_timer",
             "target": "___idf_esp_timer",
@@ -643,6 +1033,51 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/src/esp_timer.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/src/esp_timer_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/src/ets_timer_legacy.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/src/system_time.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/src/esp_timer_impl_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/src/esp_timer_impl_systimer.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_timer/src/esp_timer_etm.c" ],
             "include_dirs": [ "include" ]
         },
+        "esp_vfs_console": {
+            "alias": "idf::esp_vfs_console",
+            "target": "___idf_esp_vfs_console",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_vfs_console",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_vfs_console",
+            "reqs": [],
+            "priv_reqs": [ "vfs", "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_vfs_console/libesp_vfs_console.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_vfs_console/vfs_console.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "esp_wifi": {
+            "alias": "idf::esp_wifi",
+            "target": "___idf_esp_wifi",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_wifi",
+            "type": "LIBRARY",
+            "lib": "__idf_esp_wifi",
+            "reqs": [ "esp_event", "esp_phy", "esp_netif" ],
+            "priv_reqs": [ "esptool_py", "esp_pm", "esp_timer", "nvs_flash", "wpa_supplicant", "hal", "lwip", "esp_coex" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/esp_wifi/libesp_wifi.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_wifi/src/wifi_default.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_wifi/src/wifi_netif.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp_wifi/src/wifi_default_ap.c" ],
+            "include_dirs": [ "include", "wifi_apps/nan_app/include" ]
+        },
+        "espcoredump": {
+            "alias": "idf::espcoredump",
+            "target": "___idf_espcoredump",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump",
+            "type": "LIBRARY",
+            "lib": "__idf_espcoredump",
+            "reqs": [],
+            "priv_reqs": [ "esp_partition", "spi_flash", "bootloader_support", "mbedtls", "esp_rom", "soc", "esp_system", "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/espcoredump/libespcoredump.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_flash.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_uart.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_elf.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_binary.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_sha.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/core_dump_crc.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/espcoredump/src/port/riscv/core_dump_port.c" ],
+            "include_dirs": [ "include", "include/port/riscv" ]
+        },
         "esptool_py": {
             "alias": "idf::esptool_py",
             "target": "___idf_esptool_py",
@@ -657,6 +1092,21 @@
             "file": "",
             "sources": [],
             "include_dirs": []
+        },
+        "fatfs": {
+            "alias": "idf::fatfs",
+            "target": "___idf_fatfs",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs",
+            "type": "LIBRARY",
+            "lib": "__idf_fatfs",
+            "reqs": [ "wear_levelling", "sdmmc", "esp_driver_sdmmc", "esp_driver_sdspi" ],
+            "priv_reqs": [ "vfs", "esp_driver_gpio" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/fatfs/libfatfs.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/diskio/diskio.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/diskio/diskio_rawflash.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/diskio/diskio_wl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/src/ff.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/src/ffunicode.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/port/freertos/ffsystem.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/diskio/diskio_sdmmc.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/vfs/vfs_fat.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/vfs/vfs_fat_sdmmc.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/fatfs/vfs/vfs_fat_spiflash.c" ],
+            "include_dirs": [ "diskio", "src", "vfs" ]
         },
         "freertos": {
             "alias": "idf::freertos",
@@ -703,6 +1153,21 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/heap_caps_base.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/heap_caps.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/heap_caps_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/multi_heap.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/port/memory_layout_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/heap/port/esp32h2/memory_layout.c" ],
             "include_dirs": [ "include", "tlsf" ]
         },
+        "http_parser": {
+            "alias": "idf::http_parser",
+            "target": "___idf_http_parser",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/http_parser",
+            "type": "LIBRARY",
+            "lib": "__idf_http_parser",
+            "reqs": [],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/http_parser/libhttp_parser.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/http_parser/http_parser.c" ],
+            "include_dirs": [ "." ]
+        },
         "i2s_examples_common": {
             "alias": "idf::i2s_examples_common",
             "target": "___idf_i2s_examples_common",
@@ -717,6 +1182,51 @@
             "file": "",
             "sources": [],
             "include_dirs": [ "." ]
+        },
+        "idf_test": {
+            "alias": "idf::idf_test",
+            "target": "___idf_idf_test",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/idf_test",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_idf_test",
+            "reqs": [],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": [ "include", "include/esp32h2" ]
+        },
+        "ieee802154": {
+            "alias": "idf::ieee802154",
+            "target": "___idf_ieee802154",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154",
+            "type": "LIBRARY",
+            "lib": "__idf_ieee802154",
+            "reqs": [ "esp_coex" ],
+            "priv_reqs": [ "esp_phy", "esp_timer", "soc", "hal", "esp_pm", "esp_hal_ieee802154" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/ieee802154/libieee802154.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/esp_ieee802154.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_ack.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_dev.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_event.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_frame.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_pib.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_util.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_sec.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ieee802154/driver/esp_ieee802154_timer.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "json": {
+            "alias": "idf::json",
+            "target": "___idf_json",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/json",
+            "type": "LIBRARY",
+            "lib": "__idf_json",
+            "reqs": [],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/json/libjson.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/json/cJSON/cJSON.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/json/cJSON/cJSON_Utils.c" ],
+            "include_dirs": [ "cJSON" ]
         },
         "log": {
             "alias": "idf::log",
@@ -733,6 +1243,21 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/os/log_timestamp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log_timestamp_common.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/os/log_lock.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/buffer/log_buffers.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/os/util.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/util.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log_format_text.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log_print.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/os/log_write.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log_level/log_level.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log_level/tag_log_level/tag_log_level.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log_level/tag_log_level/linked_list/log_linked_list.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/log/src/log_level/tag_log_level/cache/log_binary_heap.c" ],
             "include_dirs": [ "include" ]
         },
+        "lwip": {
+            "alias": "idf::lwip",
+            "target": "___idf_lwip",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip",
+            "type": "LIBRARY",
+            "lib": "__idf_lwip",
+            "reqs": [],
+            "priv_reqs": [ "vfs" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/lwip/liblwip.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/apps/sntp/sntp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/api_lib.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/api_msg.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/err.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/if_api.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/netbuf.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/netdb.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/netifapi.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/sockets.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/api/tcpip.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/apps/sntp/sntp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/apps/netbiosns/netbiosns.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/def.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/dns.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/inet_chksum.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ip.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/mem.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/memp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/netif.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/pbuf.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/raw.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/stats.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/sys.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/tcp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/tcp_in.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/tcp_out.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/timeouts.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/udp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/autoip.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/dhcp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/etharp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/icmp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/igmp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/ip4.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/ip4_napt.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/ip4_addr.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv4/ip4_frag.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/dhcp6.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/ethip6.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/icmp6.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/inet6.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/ip6.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/ip6_addr.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/ip6_frag.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/mld6.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/core/ipv6/nd6.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ethernet.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/bridgeif.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/bridgeif_fdb.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/slipif.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/auth.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/ccp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/chap-md5.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/chap-new.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/chap_ms.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/demand.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/eap.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/ecp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/eui64.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/fsm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/ipcp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/ipv6cp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/lcp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/magic.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/mppe.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/multilink.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/ppp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/pppapi.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/pppcrypt.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/pppoe.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/pppol2tp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/pppos.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/upap.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/vj.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/hooks/tcp_isn_default.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/hooks/lwip_default_hooks.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/debug/lwip_debug.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/sockets_ext.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/freertos/sys_arch.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/if_index.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/acd_dhcp_check.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/port/esp32xx/vfs_lwip.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/apps/ping/esp_ping.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/apps/ping/ping.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/apps/ping/ping_sock.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/polarssl/arc4.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/polarssl/des.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/polarssl/md4.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/polarssl/md5.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/lwip/src/netif/ppp/polarssl/sha1.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/lwip/apps/dhcpserver/dhcpserver.c" ],
+            "include_dirs": [ "include", "include/apps", "include/apps/sntp", "lwip/src/include", "port/include", "port/freertos/include/", "port/esp32xx/include", "port/esp32xx/include/arch", "port/esp32xx/include/sys" ]
+        },
         "main": {
             "alias": "idf::main",
             "target": "___idf_main",
@@ -740,13 +1265,13 @@
             "dir": "D:/skapelser/flowophone/esp32/i2s_std/main",
             "type": "LIBRARY",
             "lib": "__idf_main",
-            "reqs": [],
-            "priv_reqs": [ "esp_driver_i2s", "esp_driver_gpio", "esp_adc", "esp_driver_gptimer", "esp_timer", "i2s_examples_common" ],
+            "reqs": [ "esp_driver_i2s", "esp_driver_gpio", "esp_adc", "esp_driver_gptimer", "esp_timer", "i2s_examples_common" ],
+            "priv_reqs": [ "i2s_examples_common" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "i2s_examples_common" ],
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/main/libmain.a",
-            "sources": [ "D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c" ],
-            "include_dirs": [ "." ]
+            "sources": [ "D:/skapelser/flowophone/esp32/i2s_std/main/i2s_std_example_main.c", "D:/skapelser/flowophone/esp32/i2s_std/build/ChurchOrgan.wav.S", "D:/skapelser/flowophone/esp32/i2s_std/build/PanFlute.wav.S", "D:/skapelser/flowophone/esp32/i2s_std/build/Brass.wav.S" ],
+            "include_dirs": []
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -763,6 +1288,21 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mbedtls/esp_crt_bundle/esp_crt_bundle.c", "D:/skapelser/flowophone/esp32/i2s_std/build/x509_crt_bundle.S" ],
             "include_dirs": [ "port/include", "mbedtls/include", "mbedtls/library", "esp_crt_bundle/include" ]
         },
+        "mqtt": {
+            "alias": "idf::mqtt",
+            "target": "___idf_mqtt",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt",
+            "type": "LIBRARY",
+            "lib": "__idf_mqtt",
+            "reqs": [ "esp_event", "tcp_transport" ],
+            "priv_reqs": [ "esp_timer", "http_parser", "esp_hw_support", "heap" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/mqtt/libmqtt.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt/esp-mqtt/mqtt_client.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt/esp-mqtt/lib/mqtt_msg.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt/esp-mqtt/lib/mqtt_outbox.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt/esp-mqtt/lib/platform_esp32_idf.c" ],
+            "include_dirs": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/mqtt/esp-mqtt/include" ]
+        },
         "newlib": {
             "alias": "idf::newlib",
             "target": "___idf_newlib",
@@ -778,6 +1318,51 @@
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/abort.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/assert.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/heap.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/locks.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/poll.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/pthread.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/random.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/getentropy.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/termios.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/stdatomic.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/time.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/sysconf.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/realpath.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/scandir.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/syscalls.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/reent_syscalls.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/port/esp_time_impl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/flockfile.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/reent_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/newlib_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/newlib/src/port/esp_time_impl.c" ],
             "include_dirs": [ "platform_include" ]
         },
+        "nvs_flash": {
+            "alias": "idf::nvs_flash",
+            "target": "___idf_nvs_flash",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash",
+            "type": "LIBRARY",
+            "lib": "__idf_nvs_flash",
+            "reqs": [ "esp_partition" ],
+            "priv_reqs": [ "spi_flash", "newlib" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/nvs_flash/libnvs_flash.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_api.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_cxx_api.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_item_hash_list.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_page.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_pagemanager.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_storage.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_handle_simple.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_handle_locked.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_partition.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_partition_lookup.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_partition_manager.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_types.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_platform.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_bootloader.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_encrypted_partition.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_bootloader_aes.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_flash/src/nvs_bootloader_xts_aes.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "nvs_sec_provider": {
+            "alias": "idf::nvs_sec_provider",
+            "target": "___idf_nvs_sec_provider",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_sec_provider",
+            "type": "LIBRARY",
+            "lib": "__idf_nvs_sec_provider",
+            "reqs": [],
+            "priv_reqs": [ "bootloader_support", "efuse", "esp_partition", "nvs_flash" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/nvs_sec_provider/libnvs_sec_provider.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/nvs_sec_provider/nvs_sec_provider.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "openthread": {
+            "alias": "idf::openthread",
+            "target": "___idf_openthread",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/openthread",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_openthread",
+            "reqs": [ "esp_netif", "lwip", "esp_driver_uart", "driver" ],
+            "priv_reqs": [ "console", "esp_coex", "esp_event", "esp_partition", "esp_timer", "ieee802154", "mbedtls", "nvs_flash" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": []
+        },
         "partition_table": {
             "alias": "idf::partition_table",
             "target": "___idf_partition_table",
@@ -792,6 +1377,36 @@
             "file": "",
             "sources": [],
             "include_dirs": []
+        },
+        "protobuf-c": {
+            "alias": "idf::protobuf-c",
+            "target": "___idf_protobuf-c",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protobuf-c",
+            "type": "LIBRARY",
+            "lib": "__idf_protobuf-c",
+            "reqs": [],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/protobuf-c/libprotobuf-c.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protobuf-c/protobuf-c/protobuf-c/protobuf-c.c" ],
+            "include_dirs": [ "protobuf-c" ]
+        },
+        "protocomm": {
+            "alias": "idf::protocomm",
+            "target": "___idf_protocomm",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm",
+            "type": "LIBRARY",
+            "lib": "__idf_protocomm",
+            "reqs": [ "bt" ],
+            "priv_reqs": [ "protobuf-c", "mbedtls", "console", "esp_http_server", "esp_driver_uart" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/protocomm/libprotocomm.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/common/protocomm.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/proto-c/constants.pb-c.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/proto-c/sec0.pb-c.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/proto-c/sec1.pb-c.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/proto-c/sec2.pb-c.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/proto-c/session.pb-c.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/transports/protocomm_console.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/transports/protocomm_httpd.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/security/security0.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/security/security1.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/security/security2.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/crypto/srp6a/esp_srp.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/protocomm/src/crypto/srp6a/esp_srp_mpi.c" ],
+            "include_dirs": [ "include/common", "include/security", "include/transports", "include/crypto/srp6a", "proto-c" ]
         },
         "pthread": {
             "alias": "idf::pthread",
@@ -821,6 +1436,21 @@
             "managed_priv_reqs": [],
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/riscv/libriscv.a",
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv/instruction_decode.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv/interrupt.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv/rv_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv/vectors.S", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv/interrupt_plic.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/riscv/vectors_intc.S" ],
+            "include_dirs": [ "include" ]
+        },
+        "rt": {
+            "alias": "idf::rt",
+            "target": "___idf_rt",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/rt",
+            "type": "LIBRARY",
+            "lib": "__idf_rt",
+            "reqs": [],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/rt/librt.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/rt/FreeRTOS_POSIX_mqueue.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/rt/FreeRTOS_POSIX_utils.c" ],
             "include_dirs": [ "include" ]
         },
         "sdmmc": {
@@ -867,6 +1497,141 @@
             "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/spi_flash/libspi_flash.a",
             "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/flash_brownout_hook.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_drivers.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_generic.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_issi.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_mxic.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_gd.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_winbond.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_boya.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_mxic_opi.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_chip_th.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/memspi_host_driver.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/cache_utils.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/flash_mmap.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/flash_ops.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_wrap.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/esp_flash_api.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/esp_flash_spi_init.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_os_func_app.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spi_flash/spi_flash_os_func_noos.c" ],
             "include_dirs": [ "include" ]
+        },
+        "spiffs": {
+            "alias": "idf::spiffs",
+            "target": "___idf_spiffs",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs",
+            "type": "LIBRARY",
+            "lib": "__idf_spiffs",
+            "reqs": [ "esp_partition" ],
+            "priv_reqs": [ "bootloader_support", "esptool_py", "vfs" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/spiffs/libspiffs.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/spiffs_api.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/spiffs/src/spiffs_cache.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/spiffs/src/spiffs_check.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/spiffs/src/spiffs_gc.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/spiffs/src/spiffs_hydrogen.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/spiffs/src/spiffs_nucleus.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/spiffs/esp_spiffs.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "tcp_transport": {
+            "alias": "idf::tcp_transport",
+            "target": "___idf_tcp_transport",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport",
+            "type": "LIBRARY",
+            "lib": "__idf_tcp_transport",
+            "reqs": [ "esp-tls", "lwip", "esp_timer" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/tcp_transport/libtcp_transport.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport/transport.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport/transport_ssl.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport/transport_internal.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport/transport_socks_proxy.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/tcp_transport/transport_ws.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "ulp": {
+            "alias": "idf::ulp",
+            "target": "___idf_ulp",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/ulp",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_ulp",
+            "reqs": [ "driver", "esp_adc" ],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": []
+        },
+        "unity": {
+            "alias": "idf::unity",
+            "target": "___idf_unity",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity",
+            "type": "LIBRARY",
+            "lib": "__idf_unity",
+            "reqs": [],
+            "priv_reqs": [],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/unity/libunity.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/unity/src/unity.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/unity_compat.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/unity_runner.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/unity_utils_freertos.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/unity_utils_cache.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/unity_utils_memory.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/unity_port_esp32.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/unity/port/esp/unity_utils_memory_esp.c" ],
+            "include_dirs": [ "include", "unity/src" ]
+        },
+        "usb": {
+            "alias": "idf::usb",
+            "target": "___idf_usb",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/usb",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_usb",
+            "reqs": [],
+            "priv_reqs": [ "esp_driver_gpio", "esp_mm" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": []
+        },
+        "vfs": {
+            "alias": "idf::vfs",
+            "target": "___idf_vfs",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/vfs",
+            "type": "LIBRARY",
+            "lib": "__idf_vfs",
+            "reqs": [],
+            "priv_reqs": [ "esp_timer", "esp_driver_uart", "esp_driver_usb_serial_jtag", "esp_vfs_console" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/vfs/libvfs.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/vfs/vfs.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/vfs/vfs_eventfd.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/vfs/vfs_semihost.c", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/vfs/nullfs.c" ],
+            "include_dirs": [ "include" ]
+        },
+        "wear_levelling": {
+            "alias": "idf::wear_levelling",
+            "target": "___idf_wear_levelling",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling",
+            "type": "LIBRARY",
+            "lib": "__idf_wear_levelling",
+            "reqs": [ "esp_partition" ],
+            "priv_reqs": [ "spi_flash" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/wear_levelling/libwear_levelling.a",
+            "sources": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/Partition.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/SPI_Flash.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/WL_Ext_Perf.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/WL_Ext_Safe.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/WL_Flash.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/crc32.cpp", "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wear_levelling/wear_levelling.cpp" ],
+            "include_dirs": [ "include" ]
+        },
+        "wifi_provisioning": {
+            "alias": "idf::wifi_provisioning",
+            "target": "___idf_wifi_provisioning",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wifi_provisioning",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_wifi_provisioning",
+            "reqs": [ "lwip", "protocomm" ],
+            "priv_reqs": [ "protobuf-c", "bt", "json", "esp_timer", "esp_wifi" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": [ "include" ]
+        },
+        "wpa_supplicant": {
+            "alias": "idf::wpa_supplicant",
+            "target": "___idf_wpa_supplicant",
+            "prefix": "idf",
+            "dir": "D:/Espressif/frameworks/esp-idf-v5.5-2/components/wpa_supplicant",
+            "type": "CONFIG_ONLY",
+            "lib": "__idf_wpa_supplicant",
+            "reqs": [],
+            "priv_reqs": [ "mbedtls", "esp_timer", "esp_wifi" ],
+            "managed_reqs": [],
+            "managed_priv_reqs": [],
+            "file": "",
+            "sources": [],
+            "include_dirs": [ "esp_supplicant/include" ]
         }
     },
     "all_component_info" : {
@@ -952,7 +1717,7 @@
             "priv_reqs": [ "esp_driver_uart", "esp_driver_usb_serial_jtag" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "D:/skapelser/flowophone/esp32/i2s_std/build" ]
+            "include_dirs": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/console" ]
         },
         "cxx": {
             "alias": "idf::cxx",
@@ -1000,7 +1765,7 @@
             "priv_reqs": [ "http_parser", "esp_timer", "lwip" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "D:/skapelser/flowophone/esp32/i2s_std/build", "esp-tls-crypto" ]
+            "include_dirs": [ "D:/Espressif/frameworks/esp-idf-v5.5-2/components/esp-tls", "esp-tls-crypto" ]
         },
         "esp_adc": {
             "alias": "idf::esp_adc",
@@ -1384,7 +2149,7 @@
             "priv_reqs": [ "log", "esp_timer", "esp_driver_spi", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": []
+            "include_dirs": [ "include" ]
         },
         "esp_event": {
             "alias": "idf::esp_event",
@@ -1696,7 +2461,7 @@
             "priv_reqs": [ "esptool_py", "esp_pm", "esp_timer", "nvs_flash", "wpa_supplicant", "hal", "lwip", "esp_coex" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "include", "include/local", "wifi_apps/include", "wifi_apps/nan_app/include" ]
+            "include_dirs": [ "include", "wifi_apps/nan_app/include" ]
         },
         "espcoredump": {
             "alias": "idf::espcoredump",
@@ -1708,7 +2473,7 @@
             "priv_reqs": [ "esp_partition", "spi_flash", "bootloader_support", "mbedtls", "esp_rom", "soc", "esp_system", "esp_driver_gpio" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "include" ]
+            "include_dirs": [ "include", "include/port/riscv" ]
         },
         "esptool_py": {
             "alias": "idf::esptool_py",
@@ -1852,7 +2617,7 @@
             "priv_reqs": [ "vfs" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": []
+            "include_dirs": [ "include", "include/apps", "include/apps/sntp", "lwip/src/include", "port/include", "port/freertos/include/", "port/esp32xx/include", "port/esp32xx/include/arch", "port/esp32xx/include/sys" ]
         },
         "mbedtls": {
             "alias": "idf::mbedtls",
@@ -2164,7 +2929,7 @@
             "priv_reqs": [ "mbedtls", "esp_timer", "esp_wifi" ],
             "managed_reqs": [],
             "managed_priv_reqs": [],
-            "include_dirs": [ "include", "port/include", "esp_supplicant/include" ]
+            "include_dirs": [ "esp_supplicant/include" ]
         },
         "xtensa": {
             "alias": "idf::xtensa",
@@ -2184,11 +2949,11 @@
             "prefix": "idf",
             "dir": "D:/skapelser/flowophone/esp32/i2s_std/main",
             "lib": "__idf_main",
-            "reqs": [],
-            "priv_reqs": [ "esp_driver_i2s", "esp_driver_gpio", "esp_adc", "esp_driver_gptimer", "esp_timer", "i2s_examples_common" ],
+            "reqs": [ "esp_driver_i2s", "esp_driver_gpio", "esp_adc", "esp_driver_gptimer", "esp_timer", "i2s_examples_common" ],
+            "priv_reqs": [ "i2s_examples_common" ],
             "managed_reqs": [],
             "managed_priv_reqs": [ "i2s_examples_common" ],
-            "include_dirs": [ "." ]
+            "include_dirs": []
         },
         "i2s_examples_common": {
             "alias": "idf::i2s_examples_common",

@@ -2,7 +2,9 @@
 #include <stdint.h>
 #include <stdlib.h>
 
+//#include "esp_midi.h"
 #include "esp_log.h"
+
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -27,6 +29,16 @@
 
 #include "sounds.h"
 
+
+
+extern const uint8_t raw_sample_start[] asm("_binary_PanFlute_wav_start");
+extern const uint8_t raw_sample_end[]   asm("_binary_PanFlute_wav_end");
+
+const int16_t *raw_pcm_samples = (const int16_t *)(raw_sample_start + 44);
+
+
+
+
 #define ALT_BUTTON_PIN 13
 #define CTRL_BUTTON_PIN 14
 
@@ -42,7 +54,9 @@ static uint16_t offtime = 0;
 
 static uint8_t ison = 0;
 
-static uint16_t i = 0;
+//static uint16_t i = 0;
+static uint32_t i = 0;
+
 static float iff = 0;
 
 static uint16_t i2 = 0;
@@ -81,7 +95,7 @@ static uint8_t ctrl_pressed = 0;
 
 static uint32_t phaseAcc = 0;
 
-#define SAMPLE_RATE     (44100)
+#define SAMPLE_RATE     (32000)
 
 #define ADC_UNIT      ADC_UNIT_1        // ADC1
 #define ADC_BITWIDTH  ADC_BITWIDTH_12   // 12-bit resolution (0-4095)
@@ -170,6 +184,50 @@ static void continuous_adc_init(adc_channel_t *channel, uint8_t channel_num, adc
 
 
 
+// Core pitch shifting playback function
+void play_sample_at_pitch(i2s_chan_handle_t tx_chan, float pitch_factor)
+{
+    size_t sample_count = raw_sample_end - raw_sample_start;
+    
+    // An accumulation index allowing fractional steps between samples
+    float current_index = 0.0f; 
+    int16_t output_buffer[512];
+    int buf_idx = 0;
+    size_t bytes_written;
+
+    while ((size_t)current_index < sample_count) {
+        // Linear interpolation between the current sample and the next sample
+        size_t idx_low = (size_t)current_index;
+        size_t idx_high = (idx_low + 1 < sample_count) ? idx_low + 1 : idx_low;
+        float fraction = current_index - idx_low;
+
+        int16_t sample = (int16_t)((1.0f - fraction) * raw_sample_start[idx_low] + 
+                                   fraction * raw_sample_start[idx_high]);
+
+        sample = 6*sample;
+
+        output_buffer[buf_idx++] = sample;
+
+        // When the local buffer is full, pump it out to the I2S DAC
+        if (buf_idx >= 512) {
+            i2s_channel_write(tx_chan, output_buffer, sizeof(output_buffer), &bytes_written, portMAX_DELAY);
+            buf_idx = 0;
+        }
+
+        // Increment index by the pitch multiplier factor
+        // 1.0 = normal, 2.0 = octave up, 0.5 = octave down
+        current_index += pitch_factor;
+    }
+
+    // Flush remaining buffer data
+    if (buf_idx > 0) {
+        i2s_channel_write(tx_chan, output_buffer, buf_idx * sizeof(int16_t), &bytes_written, portMAX_DELAY);
+        //i2s_channel_write(tx_chan, output_buffer, buf_idx * sizeof(int16_t), NULL, portMAX_DELAY);
+    }
+}
+
+
+
 
 
 static void write_sound()
@@ -227,13 +285,33 @@ static void write_sound()
         {
             //float vajsing = 1 + (sine65536[tremoloindex])/65536.0f/3.0f;
 
-            tmp = vol * ( softsquare[i] );
-            i += (uint16_t) (pluss);
+            //tmp = vol * ( softsquare[i] );
+
+            //if(ctrl_pressed)
+            //    play_sample_at_pitch(tx_chan, pluss / 100.f);
+
+            if(ctrl_pressed)
+                //tmp = vol * raw_pcm_samples[(uint16_t)iff];
+                tmp = vol * raw_pcm_samples[(uint32_t)iff];
+            float fact = pluss / 300.f;
+            //i += (uint16_t) (fact);
+            iff += (fact);
+            //i++;
             //i += 200;
 
-            tmp = tmp >> 8;
+            if((uint32_t)iff < 12655)
+                iff = 12655;
+
+            if((uint32_t)iff > 31942)
+                iff = 0;
+
+            tmp = tmp >> 12;
 
             tmp = tmp - 32760;
+            
+            //printf("vol:  %d\n", (int)vol);
+
+
 
             //tremoloindex += 1;
         }
@@ -426,8 +504,8 @@ void read_buttons(void *userData)
 
                             //printf("%d\n", (int16_t)tmpamount);
                                 
-                            if(ctrl_pressed)
-                                freq += sine65536[tremoloindex] / tmpamount;
+                            //if(ctrl_pressed)
+                            //    freq += sine65536[tremoloindex] / tmpamount;
 
                         }
 
@@ -452,7 +530,7 @@ void read_buttons(void *userData)
                             //printf("vol:  %d\n", (int)tmpvol);
 
 
-                            if(tmpvol > 30)
+                            if(tmpvol > 2)
                                 volsum += tmpvol;
 
                             
@@ -492,8 +570,8 @@ void read_buttons(void *userData)
         }
 
         //now volsum has 16 samples! really???
-        if( (volsum>>4) > 30)
-            targetvol = volsum>>4;
+        if( (volsum) > 2)
+            targetvol = volsum;
         else
             targetvol = 0;
 
@@ -587,7 +665,6 @@ void app_main(void)
 {
 
     //ADC
-
     esp_err_t ret;
     uint32_t ret_num = 0;
     uint8_t result[EXAMPLE_READ_LEN] = {0};
