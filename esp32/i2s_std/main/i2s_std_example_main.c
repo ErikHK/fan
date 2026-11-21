@@ -30,6 +30,9 @@
 #include "sounds.h"
 
 
+uint16_t freq_values[8] = {0,0,0,0,0,0,0,0};
+
+
 
 extern const uint8_t raw_sample_start[] asm("_binary_PanFlute_wav_start");
 extern const uint8_t raw_sample_end[]   asm("_binary_PanFlute_wav_end");
@@ -37,6 +40,16 @@ extern const uint8_t raw_sample_end[]   asm("_binary_PanFlute_wav_end");
 const int16_t *raw_pcm_samples = (const int16_t *)(raw_sample_start + 44);
 
 
+extern const uint8_t churchorgan_start[] asm("_binary_ChurchOrgan_wav_start");
+extern const uint8_t churchorgan_end[]   asm("_binary_ChurchOrgan_wav_end");
+
+const int16_t *churchorgan_samples = (const int16_t *)(churchorgan_start + 44);
+
+
+extern const uint8_t electricpiano_start[] asm("_binary_ElectricPiano_wav_start");
+extern const uint8_t electricpiano_end[]   asm("_binary_ElectricPiano_wav_end");
+
+const int16_t *electricpiano_samples = (const int16_t *)(electricpiano_start + 44);
 
 
 #define ALT_BUTTON_PIN 13
@@ -290,19 +303,20 @@ static void write_sound()
             //if(ctrl_pressed)
             //    play_sample_at_pitch(tx_chan, pluss / 100.f);
 
-            if(ctrl_pressed)
+            //if(ctrl_pressed)
                 //tmp = vol * raw_pcm_samples[(uint16_t)iff];
-                tmp = vol * raw_pcm_samples[(uint32_t)iff];
+            
+            tmp = vol * churchorgan_samples[(uint32_t)iff];
             float fact = pluss / 300.f;
             //i += (uint16_t) (fact);
             iff += (fact);
             //i++;
             //i += 200;
 
-            if((uint32_t)iff < 12655)
-                iff = 12655;
+            if((uint32_t)iff < 15104)
+                iff = 15104;
 
-            if((uint32_t)iff > 31942)
+            if((uint32_t)iff > 71862)
                 iff = 0;
 
             tmp = tmp >> 10;
@@ -310,8 +324,6 @@ static void write_sound()
             tmp = tmp - 32760;
             
             //printf("vol:  %d\n", (int)vol);
-
-
 
             //tremoloindex += 1;
         }
@@ -384,7 +396,6 @@ static void write_sound()
                         i = 0;
                     
                 }
-                        
 
                 //if(i > 65000)
                 //    ison = 0;
@@ -416,8 +427,7 @@ static void write_sound()
 
         if(vol < 80)
             iff = 0;
-
-    }
+        }
 
 
     i2s_channel_write(tx_chan, &output_buffer, 256*2, NULL, 1000);
@@ -487,6 +497,8 @@ void read_buttons(void *userData)
                         if(parsed_data[i].channel == 0)
                         {
                             int16_t tmpfreq = parsed_data[i].raw_data;
+                            //tmpfreq = 200;
+                            printf(">tmpfreq:%3d\n", tmpfreq);
 
                             if(tmpfreq > 80)
                             {
@@ -494,7 +506,6 @@ void read_buttons(void *userData)
                                 freq = tmpfreq;
 
                                 //freq += sine65536[tremoloindex]>>7;
-
                             }
 
                             int16_t tmpamount = tremoloamount / 20;
@@ -542,6 +553,8 @@ void read_buttons(void *userData)
                         {
                             freqoffset = parsed_data[i].raw_data;
 
+                            //freqoffset = 200;
+
                         }
                         else if(parsed_data[i].channel == 3)
                         {
@@ -571,9 +584,12 @@ void read_buttons(void *userData)
 
         //now volsum has 16 samples! really???
         if( (volsum>>2) > 1)
-            targetvol = volsum>>2;
+            //targetvol = volsum>>2;
+            //targetvol = 200;
+            vol = 200;
         else
             targetvol = 0;
+            //vol = 0;
 
         //targetvol = volsum;
         //printf("targetvol:  %d\n", (int)targetvol);
@@ -652,12 +668,12 @@ void timer_callback(void *param)
 {
     //targetvol += 100;
 
-    
+    /*
     if(targetvol > vol)
             vol+=1;
         else 
             vol-=1;
-        
+      */  
 }
 
 

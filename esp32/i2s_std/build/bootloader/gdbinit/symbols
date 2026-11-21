@@ -17,4 +17,4 @@ set confirm off
 set confirm on
 
 # Load application symbols
-file D:/skapelser/flowophone/esp32/i2s_std/build/bootloader/bootloader.elf
+file D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader/bootloader.elf

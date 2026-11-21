@@ -1,4 +1,4 @@
-/* * Data converted from D:/skapelser/flowophone/esp32/i2s_std/build/esp-idf/mbedtls/x509_crt_bundle
+/* * Data converted from D:/skapelser/fan/fan/esp32/i2s_std/build/esp-idf/mbedtls/x509_crt_bundle
  */
 .data
 #if !defined (__APPLE__) && !defined (__linux__)

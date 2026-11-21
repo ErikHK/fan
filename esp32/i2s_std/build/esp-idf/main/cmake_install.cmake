@@ -1,4 +1,4 @@
-# Install script for directory: D:/skapelser/flowophone/esp32/i2s_std/main
+# Install script for directory: D:/skapelser/fan/fan/esp32/i2s_std/main
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

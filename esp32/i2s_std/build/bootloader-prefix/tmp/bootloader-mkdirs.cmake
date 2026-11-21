@@ -10,18 +10,18 @@ if(NOT EXISTS "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader/subp
   file(MAKE_DIRECTORY "D:/Espressif/frameworks/esp-idf-v5.5-2/components/bootloader/subproject")
 endif()
 file(MAKE_DIRECTORY
-  "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader"
-  "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader-prefix"
-  "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader-prefix/tmp"
-  "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp"
-  "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader-prefix/src"
-  "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader"
+  "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader-prefix"
+  "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader-prefix/tmp"
+  "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp"
+  "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader-prefix/src"
+  "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp"
 )
 
 set(configSubDirs )
 foreach(subDir IN LISTS configSubDirs)
-    file(MAKE_DIRECTORY "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
+    file(MAKE_DIRECTORY "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp/${subDir}")
 endforeach()
 if(cfgdir)
-  file(MAKE_DIRECTORY "D:/skapelser/flowophone/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
+  file(MAKE_DIRECTORY "D:/skapelser/fan/fan/esp32/i2s_std/build/bootloader-prefix/src/bootloader-stamp${cfgdir}") # cfgdir has leading slash
 endif()
