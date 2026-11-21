@@ -30,10 +30,6 @@
 #include "sounds.h"
 
 
-uint16_t freq_values[8] = {0,0,0,0,0,0,0,0};
-
-
-
 extern const uint8_t raw_sample_start[] asm("_binary_PanFlute_wav_start");
 extern const uint8_t raw_sample_end[]   asm("_binary_PanFlute_wav_end");
 
