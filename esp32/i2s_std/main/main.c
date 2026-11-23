@@ -17,7 +17,7 @@
 #include "i2s_example_pins.h"
 #include <math.h>
 
-//#include <esp_adc/adc_oneshot.h>
+#include <esp_adc/adc_oneshot.h>
 #include "esp_adc/adc_continuous.h"
 
 #include "esp_adc/adc_cali.h"
@@ -29,6 +29,7 @@
 
 #include "sounds.h"
 
+#include "movingaverage.h"
 
 extern const uint8_t raw_sample_start[] asm("_binary_PanFlute_wav_start");
 extern const uint8_t raw_sample_end[]   asm("_binary_PanFlute_wav_end");
@@ -115,19 +116,101 @@ static uint32_t phaseAcc = 0;
 uint8_t result[EXAMPLE_READ_LEN] = {0};
 
 
-
-
 static int adc_value = 0;
 
 adc_continuous_handle_t handle = NULL;
 
 
-static adc_channel_t channel[5] = {ADC_CHANNEL_0, ADC_CHANNEL_1, ADC_CHANNEL_2, ADC_CHANNEL_3, ADC_CHANNEL_4};
+//static adc_channel_t channel[5] = { /* ADC_CHANNEL_0, */ ADC_CHANNEL_1, ADC_CHANNEL_2, ADC_CHANNEL_3, ADC_CHANNEL_4};
+
+
+
+static const char *TAG = "ADC_MA_4CH";
+
+#define ADC_UNIT        ADC_UNIT_1
+#define NUM_CHANNELS    4
+#define WINDOW_SIZE     8
+#define SAMPLE_PERIOD_MS 40
+
+static const adc_channel_t channels[NUM_CHANNELS] = {
+    ADC_CHANNEL_0,
+    ADC_CHANNEL_1,
+    ADC_CHANNEL_2,
+    ADC_CHANNEL_3
+};
+
+// Shared context between the ADC task and the rest of your application
+typedef struct {
+    adc_oneshot_unit_handle_t adc_handle;
+    moving_average_t filters[NUM_CHANNELS];
+    int smoothed_vals[NUM_CHANNELS];
+    SemaphoreHandle_t mutex;
+} adc_context_t;
+
+
+static adc_context_t adc_ctx;
+static int filter_buffers[NUM_CHANNELS][WINDOW_SIZE];
+
+// Thread-safe helper for other tasks to read the latest filtered value
+int get_smoothed_adc_value(int channel_idx) {
+    if (channel_idx < 0 || channel_idx >= NUM_CHANNELS) {
+        return 0;
+    }
+
+    int val = 0;
+    if (xSemaphoreTake(adc_ctx.mutex, portMAX_DELAY) == pdTRUE) {
+        val = adc_ctx.smoothed_vals[channel_idx];
+        xSemaphoreGive(adc_ctx.mutex);
+    }
+    return val;
+}
+
+
+
+
+// Dedicated ADC Sampling Task
+static void adc_sampling_task(void *pvParameters) {
+    adc_context_t *ctx = (adc_context_t *)pvParameters;
+    int raw_vals[NUM_CHANNELS] = {0};
+
+    // Use vTaskDelayUntil for consistent, drift-free sampling intervals
+    TickType_t last_wake_time = xTaskGetTickCount();
+    const TickType_t frequency = pdMS_TO_TICKS(SAMPLE_PERIOD_MS);
+
+    while (1) {
+        for (int i = 0; i < NUM_CHANNELS; i++) {
+            esp_err_t ret = adc_oneshot_read(ctx->adc_handle, channels[i], &raw_vals[i]);
+            if (ret == ESP_OK) {
+                int avg = moving_average_add(&ctx->filters[i], raw_vals[i]);
+
+                // Safely update the shared output array
+                if (xSemaphoreTake(ctx->mutex, portMAX_DELAY) == pdTRUE) {
+                    ctx->smoothed_vals[i] = avg;
+                    xSemaphoreGive(ctx->mutex);
+                }
+            } else {
+                ESP_LOGE(TAG, "ADC Read failed on channel %d", channels[i]);
+            }
+        }
+
+        ESP_LOGI(TAG, "CH0: %4d (%4d) | CH1: %4d (%4d) | CH2: %4d (%4d) | CH3: %4d (%4d)",
+                 raw_vals[0], ctx->smoothed_vals[0],
+                 raw_vals[1], ctx->smoothed_vals[1],
+                 raw_vals[2], ctx->smoothed_vals[2],
+                 raw_vals[3], ctx->smoothed_vals[3]);
+
+        vTaskDelayUntil(&last_wake_time, frequency);
+    }
+}
+
+
+
+
 
 //static adc_channel_t channel[1] = {ADC_CHANNEL_0};
 
-static TaskHandle_t s_task_handle;
-static const char *TAG = "EXAMPLE";
+//static TaskHandle_t s_task_handle;
+//static const char *TAG = "EXAMPLE";
 
 
 /* Set 1 to allocate rx & tx channels in duplex mode on a same I2S controller, they will share the BCLK and WS signal
@@ -141,102 +224,6 @@ static const char *TAG = "EXAMPLE";
 #define EXAMPLE_STD_DIN_IO1         GPIO_NUM_22     // I2S data in io number
 
 static i2s_chan_handle_t                tx_chan;        // I2S tx channel handler
-
-
-
-static bool IRAM_ATTR s_conv_done_cb(adc_continuous_handle_t handle, const adc_continuous_evt_data_t *edata, void *user_data)
-{
-    BaseType_t mustYield = pdFALSE;
-    //Notify that ADC continuous driver has done enough number of conversions
-    vTaskNotifyGiveFromISR(s_task_handle, &mustYield);
-
-    return (mustYield == pdTRUE);
-}
-
-static void continuous_adc_init(adc_channel_t *channel, uint8_t channel_num, adc_continuous_handle_t *out_handle)
-{
-
-    adc_continuous_handle_cfg_t adc_config = {
-        .max_store_buf_size = 1024,
-        .conv_frame_size = 256,
-    };
-    ESP_ERROR_CHECK(adc_continuous_new_handle(&adc_config, &handle));
-
-    adc_continuous_config_t dig_cfg = {
-        .sample_freq_hz = 20 * 1000,
-        .conv_mode = ADC_CONV_SINGLE_UNIT_1,
-        .format = ADC_DIGI_OUTPUT_FORMAT_TYPE1
-    };
-
-    adc_digi_pattern_config_t adc_pattern[SOC_ADC_PATT_LEN_MAX] = {0};
-    dig_cfg.pattern_num = channel_num;
-    for (int i = 0; i < channel_num; i++) {
-        
-        //if(i==1)
-        //    adc_pattern[i].atten = ADC_ATTEN_DB_2_5;
-        //else
-            adc_pattern[i].atten = ADC_ATTEN_DB_12;
-
-        adc_pattern[i].channel = channel[i] & 0x7;
-        adc_pattern[i].unit = ADC_UNIT;
-        adc_pattern[i].bit_width = SOC_ADC_DIGI_MAX_BITWIDTH;
-
-        //ESP_LOGI(TAG, "adc_pattern[%d].atten is :%"PRIx8, i, adc_pattern[i].atten);
-        //ESP_LOGI(TAG, "adc_pattern[%d].channel is :%"PRIx8, i, adc_pattern[i].channel);
-        //ESP_LOGI(TAG, "adc_pattern[%d].unit is :%"PRIx8, i, adc_pattern[i].unit);
-    }
-    dig_cfg.adc_pattern = adc_pattern;
-    ESP_ERROR_CHECK(adc_continuous_config(handle, &dig_cfg));
-
-    *out_handle = handle;
-}
-
-
-
-// Core pitch shifting playback function
-void play_sample_at_pitch(i2s_chan_handle_t tx_chan, float pitch_factor)
-{
-    size_t sample_count = raw_sample_end - raw_sample_start;
-    
-    // An accumulation index allowing fractional steps between samples
-    float current_index = 0.0f; 
-    int16_t output_buffer[512];
-    int buf_idx = 0;
-    size_t bytes_written;
-
-    while ((size_t)current_index < sample_count) {
-        // Linear interpolation between the current sample and the next sample
-        size_t idx_low = (size_t)current_index;
-        size_t idx_high = (idx_low + 1 < sample_count) ? idx_low + 1 : idx_low;
-        float fraction = current_index - idx_low;
-
-        int16_t sample = (int16_t)((1.0f - fraction) * raw_sample_start[idx_low] + 
-                                   fraction * raw_sample_start[idx_high]);
-
-        sample = 6*sample;
-
-        output_buffer[buf_idx++] = sample;
-
-        // When the local buffer is full, pump it out to the I2S DAC
-        if (buf_idx >= 512) {
-            i2s_channel_write(tx_chan, output_buffer, sizeof(output_buffer), &bytes_written, portMAX_DELAY);
-            buf_idx = 0;
-        }
-
-        // Increment index by the pitch multiplier factor
-        // 1.0 = normal, 2.0 = octave up, 0.5 = octave down
-        current_index += pitch_factor;
-    }
-
-    // Flush remaining buffer data
-    if (buf_idx > 0) {
-        i2s_channel_write(tx_chan, output_buffer, buf_idx * sizeof(int16_t), &bytes_written, portMAX_DELAY);
-        //i2s_channel_write(tx_chan, output_buffer, buf_idx * sizeof(int16_t), NULL, portMAX_DELAY);
-    }
-}
-
-
-
 
 
 static void write_sound()
@@ -452,155 +439,18 @@ static void vol_envelope(void *userData)
 
 }
 
-static void tremolo_task(void *userData)
-{
-    while(1)
-    {
-
-        //tremoloindex += tremolofreq;
-
-
-
-        vTaskDelay(pdMS_TO_TICKS(10));
-    }
-
-}
-
 
 void read_buttons(void *userData)
 {
 
     while(1){
 
+        uint32_t tmpfreq = get_smoothed_adc_value(0);
 
-        uint32_t ret_num = 0;
-        esp_err_t ret = adc_continuous_read(handle, result, EXAMPLE_READ_LEN, &ret_num, 0);
-        if (ret == ESP_OK) {
-            //ESP_LOGI("TASK", "ret is %x, ret_num is %"PRIu32" bytes", ret, ret_num);
-
-            adc_continuous_data_t parsed_data[ret_num / SOC_ADC_DIGI_RESULT_BYTES];
-            uint32_t num_parsed_samples = 0;
-
-            esp_err_t parse_ret = adc_continuous_parse_data(handle, result, ret_num, parsed_data, &num_parsed_samples);
-            if (parse_ret == ESP_OK) {
-                for (int i = 0; i < num_parsed_samples; i++) {
-                    if (parsed_data[i].valid) {
-                        //ESP_LOGI(TAG, "ADC%d, Channel: %d, Value: %"PRIu32,
-                        //            parsed_data[i].unit + 1,
-                        //            parsed_data[i].channel,
-                        //            parsed_data[i].raw_data);
-
-                        if(parsed_data[i].channel == 0)
-                        {
-                            int16_t tmpfreq = parsed_data[i].raw_data;
-                            //tmpfreq = 200;
-                            printf(">tmpfreq:%3d\n", tmpfreq);
-
-                            if(tmpfreq > 80)
-                            {
-                                freqsum += tmpfreq;
-                                freq = tmpfreq;
-
-                                //freq += sine65536[tremoloindex]>>7;
-                            }
-
-                            int16_t tmpamount = tremoloamount / 20;
-
-                            if(tmpamount < 20)
-                                tmpamount = 20;
-
-                            //printf("%d\n", (int16_t)tmpamount);
-                                
-                            //if(ctrl_pressed)
-                            //    freq += sine65536[tremoloindex] / tmpamount;
-
-                        }
-
-                        else if(parsed_data[i].channel == 1)
-                        {
-                            //printf("%d\n", (int)parsed_data[i].raw_data);
-
-
-                            int16_t tmpvol = (parsed_data[i].raw_data - 800);
-                            
-                            //int16_t tmpvol = (parsed_data[i].raw_data - 730);
-
-
-
-
-                            if(tmpvol < 0)
-                                tmpvol = 0;
-
-                            if(tmpvol >= 2047)
-                                tmpvol = 2047;
-
-                            //printf("vol:  %d\n", (int)tmpvol);
-
-
-                            if(tmpvol > 2)
-                                volsum += tmpvol;
-
-                            
-                            //targetvol = tmpvol;
-                            
-
-                        }
-                        else if(parsed_data[i].channel == 2)
-                        {
-                            freqoffset = parsed_data[i].raw_data;
-
-                            //freqoffset = 200;
-
-                        }
-                        else if(parsed_data[i].channel == 3)
-                        {
-                            //////////////mode = parsed_data[i].raw_data >> 8;
-                            tremoloamount = parsed_data[i].raw_data;
-
-                            //printf("mode %d\n", (int)mode);
-                        }
-                        //else if(parsed_data[i].channel == 5)
-                        //{
-                            //mode = parsed_data[i].raw_data >> 9;
-
-                            //printf("%d\n", (int)parsed_data[i].raw_data);
-                        //}
-                        
-
-                    } else {
-                        //ESP_LOGW(TAG, "Invalid data [ADC%d_Ch%d_%"PRIu32"]",
-                        //            parsed_data[i].unit + 1,
-                        //            parsed_data[i].channel,
-                        //            parsed_data[i].raw_data);
-                    }
-                }
-            }
-
-        }
-
-        //now volsum has 16 samples! really???
-        if( (volsum>>2) > 1)
-            //targetvol = volsum>>2;
-            //targetvol = 200;
-            vol = 200;
-        else
-            targetvol = 0;
-            //vol = 0;
-
-        //targetvol = volsum;
-        //printf("targetvol:  %d\n", (int)targetvol);
+        if(tmpfreq > 80)
+            freq = tmpfreq;
 
         
-
-        //printf("%d\n", (int)volsum);
-
-        //reset volsum
-        volsum = 0;
-
-        //same with freq!
-        //freq = freqsum>>4;
-        //freqsum = 0;
-
         int16_t freqoffsetq = freqoffset/100;
 
         float freqoffsetf = freqoffsetq / 12.0f;
@@ -610,23 +460,12 @@ void read_buttons(void *userData)
         pluss = 45 * pow(2.0f, freq_q + freqoffsetf);
 
 
-        if(gpio_get_level(CTRL_BUTTON_PIN))
-            ctrl_pressed = 1;
-        else
-            ctrl_pressed = 0;
-
-
-        if(gpio_get_level(ALT_BUTTON_PIN))
-            alt_pressed = 1;
-        else
-            alt_pressed = 0;
-
-
-        tremoloindex+=800;
-
-
+        vol = (get_smoothed_adc_value(1) - 800) >> 2;
+        
         vTaskDelay(1);
     }
+
+
 }
 
 
@@ -673,43 +512,42 @@ void timer_callback(void *param)
 }
 
 
+
 void app_main(void)
 {
 
-    //ADC
-    esp_err_t ret;
-    uint32_t ret_num = 0;
-    uint8_t result[EXAMPLE_READ_LEN] = {0};
-    memset(result, 0xcc, EXAMPLE_READ_LEN);
+    adc_ctx.mutex = xSemaphoreCreateMutex();
+    configASSERT(adc_ctx.mutex != NULL);
 
-    s_task_handle = xTaskGetCurrentTaskHandle();
+    // 2. Initialize ADC Unit
+    adc_oneshot_unit_init_cfg_t init_config = {
+        .unit_id = ADC_UNIT,
+        .ulp_mode = ADC_ULP_MODE_DISABLE,
+    };
+    ESP_ERROR_CHECK(adc_oneshot_new_unit(&init_config, &adc_ctx.adc_handle));
 
-    adc_continuous_handle_t handle = NULL;
-
-    continuous_adc_init(channel, sizeof(channel) / sizeof(adc_channel_t), &handle);
-
-    adc_continuous_evt_cbs_t cbs = {
-        .on_conv_done = s_conv_done_cb,
+    // 3. Configure Channels & Filters
+    adc_oneshot_chan_cfg_t config = {
+        .atten = ADC_ATTEN_DB_12,
+        .bitwidth = ADC_BITWIDTH_DEFAULT,
     };
 
-    ESP_ERROR_CHECK(adc_continuous_register_event_callbacks(handle, &cbs, NULL));
-    ESP_ERROR_CHECK(adc_continuous_start(handle));
+    for (int i = 0; i < NUM_CHANNELS; i++) {
+        ESP_ERROR_CHECK(adc_oneshot_config_channel(adc_ctx.adc_handle, channels[i], &config));
+        moving_average_init(&adc_ctx.filters[i], filter_buffers[i], WINDOW_SIZE);
+        adc_ctx.smoothed_vals[i] = 0;
+    }
 
+    // 4. Spawn the dedicated ADC Task
+    xTaskCreate(
+        adc_sampling_task,   // Task function
+        "adc_sample_task",   // Name for debugging
+        4096,                // Stack size in bytes (4KB is safe for ESP_LOGI)
+        &adc_ctx,            // Pass context struct to task
+        5,                   // Task priority (moderately high for steady timing)
+        NULL                 // Optional task handle
+    );
 
-
-    //button read timer
-    
-    /*
-    const esp_timer_create_args_t my_timer_args2 = 
-    {
-        .callback = &read_buttons,
-        .name = "Timer Interrupt"
-    };
-
-    esp_timer_handle_t timer_handler2;
-    esp_timer_create(&my_timer_args2, &timer_handler2);
-    esp_timer_start_periodic(timer_handler2, 2000);  // One Second = 1000000 micro second
-    */
 
     const esp_timer_create_args_t my_timer_args = 
     {
@@ -743,8 +581,6 @@ void app_main(void)
     };
 
 
-
-
     gpio_config_t io_conf = {
     .pin_bit_mask = (1ULL << CTRL_BUTTON_PIN),   // Select GPIO 14
     .mode = GPIO_MODE_INPUT_OUTPUT,                  // Set as input
@@ -769,14 +605,10 @@ void app_main(void)
     ESP_ERROR_CHECK(i2s_channel_init_std_mode(tx_chan, &std_cfg));
 
     ESP_ERROR_CHECK(i2s_channel_enable(tx_chan));
-
-
-    //xTaskCreate(audio_task, "audio", 4096, NULL, configMAX_PRIORITIES - 1, NULL);
     
     xTaskCreate(audio_task, "audio", 4096, NULL, 2 | portPRIVILEGE_BIT, NULL);
     
     xTaskCreate(read_buttons, "read_buttons", 4096, NULL, ( 1 | portPRIVILEGE_BIT ), NULL);
-    
-    //xTaskCreate(tremolo_task, "tremolo", 4096, NULL, 5, NULL);
+
     //xTaskCreate(vol_envelope, "volume", 4096, NULL, ( 1 | portPRIVILEGE_BIT ), NULL);
 }

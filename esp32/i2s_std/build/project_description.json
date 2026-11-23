@@ -1,7 +1,7 @@
 {
     "version":            "1.2",
     "project_name":       "i2s_std_example",
-    "project_version":    "bbc2fb4-dirty",
+    "project_version":    "3bba02f-dirty",
     "project_path":       "D:/skapelser/fan/fan/esp32/i2s_std",
     "idf_path":           "D:/Espressif/frameworks/esp-idf-v5.5-2",
     "build_dir":          "D:/skapelser/fan/fan/esp32/i2s_std/build",
@@ -1270,7 +1270,7 @@
             "managed_reqs": [],
             "managed_priv_reqs": [ "i2s_examples_common" ],
             "file": "D:/skapelser/fan/fan/esp32/i2s_std/build/esp-idf/main/libmain.a",
-            "sources": [ "D:/skapelser/fan/fan/esp32/i2s_std/main/i2s_std_example_main.c", "D:/skapelser/fan/fan/esp32/i2s_std/build/ChurchOrgan.wav.S", "D:/skapelser/fan/fan/esp32/i2s_std/build/PanFlute.wav.S", "D:/skapelser/fan/fan/esp32/i2s_std/build/Brass.wav.S" ],
+            "sources": [ "D:/skapelser/fan/fan/esp32/i2s_std/main/movingaverage.c", "D:/skapelser/fan/fan/esp32/i2s_std/main/main.c", "D:/skapelser/fan/fan/esp32/i2s_std/build/ChurchOrgan.wav.S", "D:/skapelser/fan/fan/esp32/i2s_std/build/PanFlute.wav.S", "D:/skapelser/fan/fan/esp32/i2s_std/build/Brass.wav.S" ],
             "include_dirs": []
         },
         "mbedtls": {
