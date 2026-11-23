@@ -130,7 +130,7 @@ static const char *TAG = "ADC_MA_4CH";
 #define ADC_UNIT        ADC_UNIT_1
 #define NUM_CHANNELS    4
 #define WINDOW_SIZE     8
-#define SAMPLE_PERIOD_MS 40
+#define SAMPLE_PERIOD_MS 20
 
 static const adc_channel_t channels[NUM_CHANNELS] = {
     ADC_CHANNEL_0,
@@ -181,7 +181,10 @@ static void adc_sampling_task(void *pvParameters) {
         for (int i = 0; i < NUM_CHANNELS; i++) {
             esp_err_t ret = adc_oneshot_read(ctx->adc_handle, channels[i], &raw_vals[i]);
             if (ret == ESP_OK) {
-                int avg = moving_average_add(&ctx->filters[i], raw_vals[i]);
+                int avg = 0;
+
+                if(raw_vals[i] > 80)
+                    avg = moving_average_add(&ctx->filters[i], raw_vals[i]);
 
                 // Safely update the shared output array
                 if (xSemaphoreTake(ctx->mutex, portMAX_DELAY) == pdTRUE) {
@@ -302,7 +305,7 @@ static void write_sound()
             if((uint32_t)iff > 71862)
                 iff = 0;
 
-            tmp = tmp >> 10;
+            tmp = tmp >> 11;
 
             tmp = tmp - 32760;
             
@@ -450,6 +453,8 @@ void read_buttons(void *userData)
         if(tmpfreq > 80)
             freq = tmpfreq;
 
+
+        freqoffset = get_smoothed_adc_value(2);
         
         int16_t freqoffsetq = freqoffset/100;
 
@@ -459,8 +464,13 @@ void read_buttons(void *userData)
 
         pluss = 45 * pow(2.0f, freq_q + freqoffsetf);
 
+        uint64_t tmpvol = 0;
+        tmpvol = (get_smoothed_adc_value(1) - 770);
+        
+        tmpvol = (tmpvol * tmpvol) >> 11;
 
-        vol = (get_smoothed_adc_value(1) - 800) >> 2;
+        if(tmpvol > 0)
+            targetvol = tmpvol >> 1;
         
         vTaskDelay(1);
     }
@@ -503,12 +513,12 @@ void timer_callback(void *param)
 {
     //targetvol += 100;
 
-    /*
+    
     if(targetvol > vol)
             vol+=1;
         else 
             vol-=1;
-      */  
+        
 }
 
 
@@ -557,7 +567,7 @@ void app_main(void)
 
     esp_timer_handle_t timer_handler;
     esp_timer_create(&my_timer_args, &timer_handler);
-    esp_timer_start_periodic(timer_handler, 500);  // One Second = 1000000 micro second
+    esp_timer_start_periodic(timer_handler, 100);  // One Second = 1000000 micro second
 
 
     i2s_chan_config_t chan_cfg = I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_AUTO, I2S_ROLE_MASTER);
